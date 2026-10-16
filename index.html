@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Tech Trail – A Parent Guide for Elementary Families</title>
+<meta name="description" content="An interactive, research-based guide for elementary school parents: AI in education, media balance, and internet safety.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧭%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="Family Tech Trail home"><span class="brand-ico" aria-hidden="true">🧭</span><span>Family Tech Trail</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#ai" data-nav="ai">🤖 AI</a>
+      <a href="#balance" data-nav="balance">⚖️ Balance</a>
+      <a href="#safety" data-nav="safety">🛡️ Safety</a>
+      <a href="#toolkit" data-nav="toolkit">🧰 Toolkit</a>
+      <a href="#sources" data-nav="sources">📚 Sources</a>
+    </nav>
+    <div class="tools">
+      <div class="age" role="group" aria-label="My child's age group">
+        <span class="age-label">Child age</span>
+        <button type="button" data-age="6-7" aria-pressed="false">6–7</button>
+        <button type="button" data-age="8-9" aria-pressed="true">8–9</button>
+        <button type="button" data-age="10-11" aria-pressed="false">10–11</button>
+      </div>
+      <button type="button" class="passport-btn" id="passportBtn" aria-haspopup="dialog">🎫 <span id="passportCount">0/12</span></button>
+    </div>
+  </div>
+</header>
+
+<noscript><div class="wrap"><p class="notice">This guide is interactive and needs JavaScript. The main ideas and the source list are still readable below.</p></div></noscript>
+
+<main id="main" tabindex="-1">
+
+<!-- ========================= HOME ========================= -->
+<section class="view" id="view-home" aria-labelledby="h-home">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">For parents &amp; caregivers of kids ages 6–11</p>
+        <h1 id="h-home" tabindex="-1">Raising kids in a world of screens, chatbots and group chats — <em>without the guilt trip.</em></h1>
+        <p class="lead">Explore bite-size guidance drawn from pediatric, education and child-safety organizations. Play the games, take the check-in, and build a plan that fits <strong>your</strong> family.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#checkin" data-scroll>Start the 2-minute check-in</a>
+          <a class="btn" href="#ai">Jump to a topic</a>
+        </div>
+        <p class="tiny">Everything you enter stays in this browser. Nothing is sent anywhere.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb o1">🤖</div><div class="orb o2">⚖️</div><div class="orb o3">🛡️</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 class="sr-only">Three trails</h2>
+    <div class="trail-cards">
+      <a class="trail t-ai" href="#ai"><span class="t-ico">🤖</span><h3>AI in Learning &amp; Life</h3><p>What AI is (and isn't), how to fact-check a chatbot, and homework rules that protect learning.</p><span class="go">Explore →</span></a>
+      <a class="trail t-bal" href="#balance"><span class="t-ico">⚖️</span><h3>Media Balance</h3><p>Design a day that has room for sleep, play and family — and a media plan kids help write.</p><span class="go">Explore →</span></a>
+      <a class="trail t-saf" href="#safety"><span class="t-ico">🛡️</span><h3>Internet Safety</h3><p>Go / Pause / Stop practice, privacy set-up, and what to do when something goes wrong.</p><span class="go">Explore →</span></a>
+    </div>
+
+    <section class="panel" id="checkin" aria-labelledby="h-checkin">
+      <h2 id="h-checkin">Family check-in</h2>
+      <p class="muted">Six quick statements. No grades — this just points you to a good place to start.</p>
+      <div id="checkinMount"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-myth">
+      <h2 id="h-myth">Myth or fact? <span class="chip">tap a card</span></h2>
+      <p class="muted">Six things parents often hear. Flip them all to earn a stamp.</p>
+      <div id="mythMount" class="myth-grid"></div>
+    </section>
+
+    <section class="panel soft" aria-labelledby="h-principles">
+      <h2 id="h-principles">Four ideas that show up in almost every expert source</h2>
+      <ol class="principles">
+        <li><strong>Connection beats control.</strong> Kids tell you more when they expect calm, not punishment.</li>
+        <li><strong>Quality, context and what it replaces</strong> matter more than a single magic number of minutes.</li>
+        <li><strong>Co-use early.</strong> Watch, play and explore <em>with</em> your child, then give independence in steps.</li>
+        <li><strong>Plans beat arguments.</strong> Agree on routines in calm moments, and revisit them as kids grow.</li>
+      </ol>
+    </section>
+  </div>
+</section>
+
+<!-- ========================= AI ========================= -->
+<section class="view" id="view-ai" aria-labelledby="h-ai" hidden>
+  <div class="topic-hero t-ai">
+    <div class="wrap">
+      <p class="eyebrow">🤖 Trail 1</p>
+      <h1 id="h-ai" tabindex="-1">AI in Learning &amp; Life</h1>
+      <p class="lead">Your child will grow up with AI in their search tools, homework apps and games. The goal isn't to fear it or to hand over the keys — it's to build <strong>understanding, curiosity and good judgment</strong>.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <section class="panel">
+      <h2>Big ideas</h2>
+      <div class="acc">
+        <details open><summary>What AI actually is (say it to your child like this)</summary>
+          <p>Most of today's AI finds <strong>patterns in huge amounts of data</strong> and uses them to predict or generate something — a recommended video, a face match, the next word in a sentence. Chatbots are trained to produce text that <em>sounds</em> right. That's different from knowing, understanding or caring.</p>
+          <p>The <a href="https://ai4k12.org/" target="_blank" rel="noopener">AI4K12 initiative</a> (AAAI &amp; CSTA) frames school-age AI literacy around five big ideas: <em>perception, representation &amp; reasoning, learning, natural interaction,</em> and <em>societal impact</em>. Elementary kids can explore all five through play.</p></details>
+        <details><summary>Confident doesn't mean correct</summary>
+          <p>Generative AI can state wrong facts — or invent books, quotes and links — in a calm, authoritative voice. Build one habit early: <strong>"Who says so, and how can we check?"</strong> Try the Fact-check Lab below.</p></details>
+        <details><summary>Humans stay in charge</summary>
+          <p>The U.S. Department of Education's 2023 report on AI and teaching centers on keeping <em>humans in the loop</em> — teachers, parents and students making the decisions, with AI as a tool. UNESCO's 2023 guidance on generative AI similarly stresses a human-centered approach, teacher involvement, and protecting learners' data and wellbeing.</p></details>
+        <details><summary>Homework: learning is the point</summary>
+          <p>The test for any AI use: <em>"Am I still doing the thinking?"</em> Explaining, quizzing and brainstorming can support learning. Having AI produce the work to hand in replaces it. Schools differ — <strong>check your school's AI policy</strong> and keep teachers in the loop.</p></details>
+        <details><summary>Privacy &amp; age limits</summary>
+          <p>Anything typed or uploaded may be stored or used by the service. Teach "<strong>no names, school, address, photos of people, or secrets</strong>." Many general-purpose chatbots set a minimum age of 13 in their terms (some require a parent's permission under 18), and UNESCO noted 13 as a commonly used threshold while saying many experts think it's too young. Read each tool's terms; supervised, child-specific tools are a better fit for younger kids.</p></details>
+        <details><summary>AI "friends" and companions</summary>
+          <p>Common Sense Media's risk assessment of AI companion apps concluded they are not suitable for anyone under 18, because they can produce inappropriate content, are built to be agreeable, and aren't equipped for serious emotional conversations. Keep your child's emotional support human: parents, family, teachers, counselors.</p></details>
+        <details><summary>Fakes, bias and "is this real?"</summary>
+          <p>AI can create realistic images, voices and video, and it can reflect biases in its training data. For elementary kids: <em>"Pictures and videos can be edited or made by computers. If it's surprising, pause and ask."</em></p></details>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Your child's age lens <span class="chip" data-age-chip></span></h2>
+      <div class="agetips" data-topic="ai"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-ai1">
+      <h2 id="g-ai1">🎮 Game: AI or Not AI?</h2>
+      <p class="muted">Great to play with your child. Read each example aloud and decide together.</p>
+      <div class="game" id="gameAiNot"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-ai2">
+      <h2 id="g-ai2">🔬 Fact-check Lab</h2>
+      <p class="muted">Pretend a chatbot said each thing below. Is it correct, or does it contain an error? (Some answers are right — the habit is to <em>check anyway</em>.)</p>
+      <div class="game" id="gameFact"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-ai3">
+      <h2 id="g-ai3">🚦 Homework traffic light</h2>
+      <p class="muted">Green = good with a grown-up around. Yellow = ask first (teacher/parent). Red = skip it.</p>
+      <div class="game" id="gameTraffic"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Our family AI rules</h2>
+      <p class="muted">Tick the ones you'd like to adopt. They appear in your Toolkit.</p>
+      <div id="aiRules"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Conversation starters</h2>
+      <div class="starter" data-topic="ai"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ========================= BALANCE ========================= -->
+<section class="view" id="view-balance" aria-labelledby="h-balance" hidden>
+  <div class="topic-hero t-bal">
+    <div class="wrap">
+      <p class="eyebrow">⚖️ Trail 2</p>
+      <h1 id="h-balance" tabindex="-1">Media Balance</h1>
+      <p class="lead">Screens aren't all good or all bad. The question is <strong>what the screen is doing for your child — and what it's pushing out.</strong></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <section class="panel">
+      <h2>Big ideas</h2>
+      <div class="acc">
+        <details open><summary>From "how many minutes?" to "how, what and when?"</summary>
+          <p>The American Academy of Pediatrics' January 2026 policy statement, <em>Digital Ecosystems, Children, and Adolescents</em>, moves beyond simple screen-time limits. It looks at platform design (many are built to maximize engagement and profit), the quality of content, the relationships around use, and what media displaces. It calls for safer defaults like autoplay off and no targeted ads to minors — and still encourages families to make a plan.</p></details>
+        <details><summary>Protect the big three: sleep, movement, people</summary>
+          <p>Guidelines suggest roughly <strong>9–11 hours of sleep</strong> for ages 5–13 (Canadian 24-Hour Movement Guidelines; the American Academy of Sleep Medicine's consensus is 9–12 hours for ages 6–12), <strong>about 60 minutes a day of moderate-to-vigorous activity</strong> (Canada, WHO), and — in Canada's and Australia's guidelines — <strong>no more than about 2 hours of recreational screen time</strong> per day. Treat that last number as a reference point, not a verdict; the displacement question matters more.</p></details>
+        <details><summary>The "5 Cs" check</summary>
+          <p>A framework popularized by pediatrician Dr. Jenny Radesky suggests asking: <strong>C</strong>hild (how is mine doing?), <strong>C</strong>ontent (is it good?), <strong>C</strong>alm (can they stop without a meltdown?), <strong>C</strong>rowding out (what's it replacing?), and <strong>C</strong>ommunication (are we talking about it?). Try the Quality Check below.</p></details>
+        <details><summary>Bedtime and bedrooms</summary>
+          <p>The AAP has long recommended keeping devices out of bedrooms overnight and turning screens off about an hour before bed. Charging devices in a shared space makes that easier for everyone — grown-ups included.</p></details>
+        <details><summary>Design tricks that make stopping hard</summary>
+          <p>Autoplay, streaks, infinite scroll and reward loops are designed to keep people watching. Telling kids "this was built to be hard to stop" turns a power struggle into a shared puzzle. The U.S. Surgeon General's 2023 advisory on social media and youth mental health makes the same point about teens' use; elementary years are the time to build awareness before the pull gets stronger.</p></details>
+        <details><summary>Model it</summary>
+          <p>Kids notice when a phone comes out at dinner. Agree on grown-up screen-free times too — it's fairer, and it works better.</p></details>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Your child's age lens <span class="chip" data-age-chip></span></h2>
+      <div class="agetips" data-topic="balance"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-b1">
+      <h2 id="g-b1">🗓️ Day designer</h2>
+      <p class="muted">Slide to sketch a typical <strong>school day</strong>. It's a thinking tool, not a test — real life is messy.</p>
+      <div id="dayDesigner"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-b2">
+      <h2 id="g-b2">✅ Quality check (the 5 Cs)</h2>
+      <p class="muted">Pick something your child does on a screen and answer honestly.</p>
+      <div id="qualityCheck"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-b3">
+      <h2 id="g-b3">📝 Build a Family Media Plan</h2>
+      <p class="muted">Inspired by the AAP's Family Media Plan. Make it <em>with</em> your kids — plans they help write get followed more.</p>
+      <div id="planBuilder"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🛑 "Time's up" without the meltdown</h2>
+      <div id="transitions"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🎡 Boredom-buster wheel</h2>
+      <p class="muted">Screen-free ideas, filtered by your child's age group.</p>
+      <div id="wheel"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Conversation starters</h2>
+      <div class="starter" data-topic="balance"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ========================= SAFETY ========================= -->
+<section class="view" id="view-safety" aria-labelledby="h-safety" hidden>
+  <div class="topic-hero t-saf">
+    <div class="wrap">
+      <p class="eyebrow">🛡️ Trail 3</p>
+      <h1 id="h-safety" tabindex="-1">Internet Safety</h1>
+      <p class="lead">Tools help, but <strong>the strongest safety feature is a child who knows they can tell you anything</strong> and won't lose the device — or your trust — for doing so.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <section class="panel">
+      <h2>Big ideas</h2>
+      <div class="acc">
+        <details open><summary>"Go, Pause, Stop &amp; Tell"</summary>
+          <p>A simple script kids can remember: <strong>Go</strong> = fine. <strong>Pause</strong> = check with a grown-up first. <strong>Stop &amp; tell</strong> = don't engage, leave or close it, tell a trusted adult. Practice it with the game below.</p></details>
+        <details><summary>Tell-us-and-you're-not-in-trouble</summary>
+          <p>NCMEC (the National Center for Missing &amp; Exploited Children), through its NetSmartz program, and StopBullying.gov both stress responding calmly and making sure children know it isn't their fault. If kids fear losing devices, they hide problems. Say it out loud, often: <em>"If something online feels weird, tell me. You will not be in trouble."</em></p></details>
+        <details><summary>Where kids actually meet strangers</summary>
+          <p>It's not only social media. Multiplayer game chat, comment sections, and shared creative platforms let unknown people reach children. Look at <strong>who can message your child</strong> and set chat to friends-only or off where possible.</p></details>
+        <details><summary>Age minimums and privacy law</summary>
+          <p>In the U.S., the Children's Online Privacy Protection Act (COPPA) limits how online services collect personal information from children under 13, which is a main reason most big social platforms set 13 as their minimum age. Age checks are easy to bypass, so don't rely on them — treat the minimum as guidance and decide as a family.</p></details>
+        <details><summary>Scams, secrets and "special friends"</summary>
+          <p>Warning signs worth teaching: requests for personal info, offers that are "free," pressure to move to another app, asking for pictures, and <strong>any request to keep a secret from parents</strong>. Online enticement and sextortion are most often reported with teens, but the groundwork — body privacy, "no secrets from parents," telling early — starts in the elementary years (see NCMEC's sextortion tip sheet for parents).</p></details>
+        <details><summary>Kindness &amp; cyberbullying</summary>
+          <p>StopBullying.gov's advice: don't retaliate, save evidence (screenshots), block and report, and tell a trusted adult or the school. Ask "How would it feel to get this message?" before sending.</p></details>
+        <details><summary>Parental controls: useful, not magic</summary>
+          <p>Built-in tools like Apple Screen Time, Google Family Link and Microsoft Family Safety can set content ratings, approve downloads and manage time. Kids find workarounds, so pair them with conversation and shared spaces.</p></details>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Your child's age lens <span class="chip" data-age-chip></span></h2>
+      <div class="agetips" data-topic="safety"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-s1">
+      <h2 id="g-s1">🚦 Game: Go, Pause or Stop &amp; Tell?</h2>
+      <p class="muted">Play this <em>with</em> your child. Talk about the "why" — that's where the learning is.</p>
+      <div class="game" id="gameSafety"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-s2">
+      <h2 id="g-s2">🔐 Privacy lab</h2>
+      <div class="two-col">
+        <div>
+          <h3>Silly passphrase practice</h3>
+          <p class="muted">Long + memorable + not personal. Practice the idea with kids, then use a family password manager for real accounts and turn on two-step verification on <em>your</em> accounts.</p>
+          <div id="passphrase"></div>
+        </div>
+        <div>
+          <h3>Username check</h3>
+          <p class="muted">Type a username idea. We only check it in your browser.</p>
+          <div id="usernameCheck"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🔧 Set-up checklist for grown-ups</h2>
+      <p class="muted">Tick as you go. Progress is saved in this browser.</p>
+      <div id="safetyChecklist"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g-s3">
+      <h2 id="g-s3">🆘 "What do I do if…?" help finder</h2>
+      <p class="muted">Tap a situation for calm first steps. U.S.-focused; see Sources for other countries.</p>
+      <div id="helpFinder"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Conversation starters</h2>
+      <div class="starter" data-topic="safety"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ========================= TOOLKIT ========================= -->
+<section class="view" id="view-toolkit" aria-labelledby="h-toolkit" hidden>
+  <div class="topic-hero t-tool">
+    <div class="wrap">
+      <p class="eyebrow">🧰 Your family's page</p>
+      <h1 id="h-toolkit" tabindex="-1">My Family Toolkit</h1>
+      <p class="lead">Everything you chose across the trails, in one printable place. Stored only in this browser.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="toolkitMount"></div>
+    <section class="panel">
+      <h2>🎯 Weekly family challenge</h2>
+      <div id="challenge"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ========================= SOURCES ========================= -->
+<section class="view" id="view-sources" aria-labelledby="h-sources" hidden>
+  <div class="topic-hero t-src">
+    <div class="wrap">
+      <p class="eyebrow">📚 Go deeper</p>
+      <h1 id="h-sources" tabindex="-1">Sources &amp; further reading</h1>
+      <p class="lead">This guide summarizes and links to widely cited, mostly non-commercial organizations. Always check the original for the latest wording.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="sourcesMount"></div>
+    <section class="panel soft">
+      <h2>About this guide</h2>
+      <ul class="plain">
+        <li><strong>Not medical, legal or mental-health advice.</strong> If you're worried about your child's wellbeing or safety, contact your pediatrician, school counselor or local services.</li>
+        <li><strong>Guidance changes.</strong> Technology and recommendations move fast; for example, the AAP updated its media policy in 2026. Content here was drafted in October 2026 — please check the linked sources for updates.</li>
+        <li><strong>U.S.-centric</strong> for reporting resources; international organizations are listed above.</li>
+        <li>Quiz and game scenarios are teaching examples written for this guide, not drawn from any single study.</li>
+      </ul>
+    </section>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Family Tech Trail · A free, open-source parent guide. Works offline; no tracking, no accounts.</p>
+    <p class="tiny">Not affiliated with the organizations cited. Links open the original sources.</p>
+  </div>
+</footer>
+
+<dialog id="passportDlg" aria-labelledby="passportTitle">
+  <form method="dialog" class="dlg">
+    <h2 id="passportTitle">🎫 Explorer passport</h2>
+    <p class="muted">Collect stamps by trying the activities.</p>
+    <div id="passportGrid" class="stamp-grid"></div>
+    <button class="btn primary" value="close">Close</button>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

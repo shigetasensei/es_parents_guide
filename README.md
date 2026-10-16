@@ -16,7 +16,7 @@ It's a static site: no build step, no dependencies, no tracking. Open `index.htm
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
-To publish, enable **GitHub Pages** (Settings → Pages → deploy from branch, root folder).
+To publish: in the repo go to **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow in `.github/workflows/pages.yml` then deploys the site on every push to `main` (or run it manually from the Actions tab).
 
 ## Privacy
 

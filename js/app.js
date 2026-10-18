@@ -62,7 +62,7 @@ function award(id) {
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'toolkit', 'sources'];
+const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'japan', 'toolkit', 'sources'];
 let firstRoute = true;
 function route() {
   let id = location.hash.slice(1);
@@ -545,7 +545,11 @@ function initHelp() {
       clear(detail).append(
         h('h3', {}, it.label),
         h('ol', {}, it.steps.map(s => h('li', { html: s }))),
-        h('p', { class: 'tiny' }, h('strong', {}, 'Links: '), it.links.map((l, k) => [k ? ' · ' : '', h('a', { href: l[1], target: '_blank', rel: 'noopener' }, l[0])])));
+        h('p', { class: 'tiny' }, h('strong', {}, 'Links: '), it.links.map((l, k) => [k ? ' · ' : '', h('a', { href: l[1], target: '_blank', rel: 'noopener' }, l[0])])),
+        it.jp && it.jp.length ? h('div', { class: 'jp-help' },
+          h('h4', {}, '🇯🇵 In Japan 日本の窓口'),
+          h('ul', {}, it.jp.map(id => { const x = D.jpHelp.find(j => j.id === id); return jpLine(x); })),
+          h('p', { class: 'tiny' }, h('a', { href: '#japan' }, 'See all help lines in Japan →'))) : null);
       award('help');
     });
     return b;
@@ -620,11 +624,38 @@ function initChallenge() {
   show();
 }
 
+/* ---------- Japan: help line directory ---------- */
+function telHref(tel) {
+  if (/^[0-9-]+$/.test(tel)) return 'tel:' + tel.replace(/-/g, '');
+  if (/^#[0-9]+$/.test(tel)) return 'tel:%23' + tel.slice(1);
+  return null;
+}
+function jpLine(x) {
+  const th = telHref(x.tel);
+  return h('li', {},
+    h('strong', {}, x.ja), ' ', h('span', { class: 'muted' }, `(${x.name})`), ' — ',
+    th ? h('a', { href: th }, x.tel) : x.tel,
+    x.hours && x.hours !== 'Online' ? h('span', { class: 'muted' }, ` · ${x.hours}`) : null);
+}
+function initJapan() {
+  const m = $('#jpHelpMount');
+  D.jpHelp.forEach(x => {
+    const th = telHref(x.tel);
+    m.append(h('article', { class: 'jp-card' },
+      h('h3', {}, x.ja),
+      h('p', { class: 'jp-name' }, x.name),
+      h('p', { class: 'jp-tel' }, th ? h('a', { href: th }, x.tel) : x.tel),
+      h('p', { class: 'jp-hours' }, x.hours),
+      h('p', {}, x.who),
+      x.url ? h('p', { class: 'tiny' }, h('a', { href: x.url, target: '_blank', rel: 'noopener' }, 'Official page →')) : null));
+  });
+}
+
 /* ---------- Sources ---------- */
 function initSources() {
   const m = $('#sourcesMount');
   const all = D.sources.flatMap(g => g.items.map(it => ({ ...it, group: g, topics: [g.id, ...(it.also || [])] })));
-  const chips = [['all', 'All'], ['early', '🌱 Ages 3–5'], ['ai', '🤖 AI'], ['balance', '⚖️ Balance'], ['safety', '🛡️ Safety'], ['tools', '🔧 Tools'], ['world', '🌍 Outside the U.S.']];
+  const chips = [['all', 'All'], ['early', '🌱 Ages 3–5'], ['ai', '🤖 AI'], ['balance', '⚖️ Balance'], ['safety', '🛡️ Safety'], ['tools', '🔧 Tools'], ['japan', '🇯🇵 Japan'], ['world', '🌍 Outside the U.S.']];
   let topic = 'all', q = '', visible = [];
   const count = h('p', { class: 'tiny', 'aria-live': 'polite' });
   const list = h('div');
@@ -696,7 +727,7 @@ function boot() {
   initCalm();
   initGame('#gameGoodFit', { ...D.games.goodFit });
   checklist('#eyChecklist', D.eySetup, S.eySetup, n => { if (n >= 5) award('eysetup'); });
-  initStarters(); initPassphrase(); initUsername(); initHelp(); initChallenge(); initSources();
+  initStarters(); initPassphrase(); initUsername(); initHelp(); initChallenge(); initJapan(); initSources();
   renderAge(); updatePassport(); route();
 }
 boot();

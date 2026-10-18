@@ -32,7 +32,7 @@ const AGE_LABEL = { '6-7': 'Ages 6–7', '8-9': 'Ages 8–9', '10-11': 'Ages 10�
 
 /* ---------- state (localStorage with safe fallback) ---------- */
 const KEY = 'familyTechTrail.v1';
-let S = { age: '8-9', stamps: {}, myths: {}, aiRules: {}, setup: {}, plan: null, day: null, favs: [], checkin: null, priv: {} };
+let S = { age: '8-9', stamps: {}, myths: {}, aiRules: {}, setup: {}, plan: null, day: null, dayEY: null, eySetup: {}, favs: [], checkin: null, priv: {} };
 try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { /* private mode */ }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } };
 
@@ -62,7 +62,7 @@ function award(id) {
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ['home', 'ai', 'balance', 'safety', 'toolkit', 'sources'];
+const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'toolkit', 'sources'];
 let firstRoute = true;
 function route() {
   let id = location.hash.slice(1);
@@ -239,7 +239,7 @@ function checklist(mountSel, items, store, onChange) {
   update();
 }
 
-/* ---------- Balance: day designer ---------- */
+/* ---------- Balance: day designer (elementary + early years) ---------- */
 const DAY = [
   { id: 'sleep', label: '😴 Sleep', def: 10, color: 'var(--c1)' },
   { id: 'school', label: '🏫 School & travel', def: 7, color: 'var(--c2)' },
@@ -248,52 +248,81 @@ const DAY = [
   { id: 'family', label: '🍽️ Meals & family time', def: 2, color: 'var(--c5)' },
   { id: 'screens', label: '📺 Recreational screens', def: 1.5, color: 'var(--c6)' }
 ];
+const DAY_EY = [
+  { id: 'sleep', label: '😴 Sleep (incl. naps)', def: 11.5, color: 'var(--c1)' },
+  { id: 'school', label: '🏫 Preschool / childcare & travel', def: 5, color: 'var(--c2)' },
+  { id: 'play', label: '🏃 Active play & outdoors (all movement)', def: 3.5, color: 'var(--c3)' },
+  { id: 'quiet', label: '📖 Reading & quiet play', def: 1, color: 'var(--c4)' },
+  { id: 'family', label: '🍽️ Meals & family time', def: 2, color: 'var(--c5)' },
+  { id: 'screens', label: '📺 Screens', def: 0.5, color: 'var(--c6)' }
+];
 const fmtH = x => { const hh = Math.floor(x + 1e-9), mm = Math.round((x - hh) * 60); return hh === 0 ? `${mm} m` : mm ? `${hh} h ${mm} m` : `${hh} h`; };
 
-function initDay() {
-  const mount = $('#dayDesigner');
-  const vals = {}; DAY.forEach(d => { vals[d.id] = (S.day && S.day[d.id] != null) ? S.day[d.id] : d.def; });
+const DAY_SETS = {
+  main: {
+    cats: DAY, key: 'day', stamp: 'day', idp: 'day', note: 'Guidelines cited: Canadian 24-Hour Movement Guidelines (CSEP), WHO, AASM, Australian physical activity guidelines. Treat them as reference points.',
+    feedback(v, add) {
+      if (v.sleep < 9) add('warn', '<strong>Sleep:</strong> Canadian guidelines suggest 9–11 hours for ages 5–13, and the American Academy of Sleep Medicine suggests 9–12 hours for ages 6–12. Try an earlier bedtime and screens off about an hour before bed.');
+      else add('good', '<strong>Sleep</strong> is within the recommended range.');
+      if (v.play < 1) add('warn', '<strong>Movement:</strong> WHO and Canadian guidelines suggest about 60 minutes of moderate-to-vigorous activity a day. School recess and PE can count.');
+      else add('good', '<strong>Active play</strong> time looks healthy (guidelines suggest about 60 minutes a day).');
+      if (v.screens > 2) add('warn', '<strong>Screens:</strong> Canadian and Australian guidelines suggest about 2 hours of recreational screen time at most on a day. Ask what it is pushing out — sleep, play or people.');
+      else add('good', '<strong>Recreational screens</strong> are at or under about 2 hours.');
+      if (v.family < 1) add('warn', '<strong>Family time:</strong> Shared meals and talk are a protective habit. Can you carve out a bit more?');
+    }
+  },
+  early: {
+    cats: DAY_EY, key: 'dayEY', stamp: 'eyday', idp: 'dayey', note: 'Guidelines cited: WHO (2019) and Canadian 24-Hour Movement Guidelines for the Early Years (ages 3–4); AASM (2016) for sleep. Treat them as reference points.',
+    feedback(v, add) {
+      if (v.sleep < 10) add('warn', '<strong>Sleep:</strong> WHO, the Canadian early-years guidelines and the American Academy of Sleep Medicine suggest 10–13 hours (naps included) for ages 3–5. Protect naps and bedtime, and turn screens off about an hour before bed.');
+      else add('good', '<strong>Sleep</strong> is within the recommended 10–13 hours.');
+      if (v.play < 3) add('warn', '<strong>Movement:</strong> WHO and Canada suggest at least 3 hours of physical activity of any intensity spread across the day, including about 1 hour of energetic play. Walking, climbing, dancing and playground time all count.');
+      else add('good', '<strong>Active play</strong> reaches the suggested 3 hours of movement a day.');
+      if (v.screens > 1) add('warn', '<strong>Screens:</strong> WHO and Canada suggest no more than 1 hour of sitting screen time a day for ages 3–4, and less is better. The AAP\'s earlier guidance for ages 2–5 was about 1 hour of high-quality programming.');
+      else add('good', '<strong>Screens</strong> are at or under 1 hour.');
+      if (v.quiet < 0.5) add('info', '<strong>Quiet time:</strong> Reading, storytelling, singing and puzzles with a caregiver count as high-quality sitting time and are very good for development.');
+    }
+  }
+};
+
+function initDay(mountSel, set) {
+  const mount = $(mountSel);
+  const cats = set.cats;
+  const saved = S[set.key];
+  const vals = {}; cats.forEach(d => { vals[d.id] = (saved && saved[d.id] != null) ? saved[d.id] : d.def; });
   const barEl = h('div', { class: 'daybar', role: 'img' });
   const fb = h('ul', { class: 'fb-list', 'aria-live': 'polite' });
-  const outs = {};
-  const sum = () => DAY.reduce((a, d) => a + vals[d.id], 0);
+  const sum = () => cats.reduce((a, d) => a + vals[d.id], 0);
 
-  const rows = DAY.map(d => {
-    const out = h('output', { for: 'day-' + d.id }, fmtH(vals[d.id]));
-    outs[d.id] = out;
-    const r = h('input', { type: 'range', id: 'day-' + d.id, min: 0, max: 14, step: 0.25, value: vals[d.id] });
+  const rows = cats.map(d => {
+    const id = `${set.idp}-${d.id}`;
+    const out = h('output', { for: id }, fmtH(vals[d.id]));
+    const r = h('input', { type: 'range', id, min: 0, max: 14, step: 0.25, value: vals[d.id] });
     r.addEventListener('input', () => {
       const others = sum() - vals[d.id];
-      let v = Math.min(parseFloat(r.value), 24 - others);
+      const v = Math.min(parseFloat(r.value), 24 - others);
       vals[d.id] = v; r.value = v; out.textContent = fmtH(v); render();
     });
     return h('div', { class: 'slider-row' },
-      h('label', { for: 'day-' + d.id }, h('span', { class: 'dot', style: { background: d.color } }), d.label), r, out);
+      h('label', { for: id }, h('span', { class: 'dot', style: { background: d.color } }), d.label), r, out);
   });
 
   function render() {
     clear(barEl);
     const left = 24 - sum();
-    DAY.forEach(d => barEl.append(h('span', { class: 'seg', style: { width: (vals[d.id] / 24 * 100) + '%', background: d.color }, title: `${d.label}: ${fmtH(vals[d.id])}` })));
+    cats.forEach(d => barEl.append(h('span', { class: 'seg', style: { width: (vals[d.id] / 24 * 100) + '%', background: d.color }, title: `${d.label}: ${fmtH(vals[d.id])}` })));
     barEl.append(h('span', { class: 'seg rest', style: { width: (left / 24 * 100) + '%' }, title: `Everything else: ${fmtH(left)}` }));
-    barEl.setAttribute('aria-label', 'A 24-hour day. ' + DAY.map(d => `${d.label.replace(/^\S+\s/, '')} ${fmtH(vals[d.id])}`).join(', ') + `, everything else ${fmtH(left)}.`);
+    barEl.setAttribute('aria-label', 'A 24-hour day. ' + cats.map(d => `${d.label.replace(/^\S+\s/, '')} ${fmtH(vals[d.id])}`).join(', ') + `, everything else ${fmtH(left)}.`);
     clear(fb);
     const add = (cls, t) => fb.append(h('li', { class: cls, html: t }));
     add('info', `<strong>Everything else:</strong> ${fmtH(left)} (getting ready, chores, free time).`);
-    if (vals.sleep < 9) add('warn', '<strong>Sleep:</strong> Canadian guidelines suggest 9–11 hours for ages 5–13, and the American Academy of Sleep Medicine suggests 9–12 hours for ages 6–12. Try an earlier bedtime and screens off about an hour before bed.');
-    else add('good', '<strong>Sleep</strong> is within the recommended range.');
-    if (vals.play < 1) add('warn', '<strong>Movement:</strong> WHO and Canadian guidelines suggest about 60 minutes of moderate-to-vigorous activity a day. School recess and PE can count.');
-    else add('good', '<strong>Active play</strong> time looks healthy (guidelines suggest about 60 minutes a day).');
-    if (vals.screens > 2) add('warn', '<strong>Screens:</strong> Canadian and Australian guidelines suggest about 2 hours of recreational screen time at most on a day. Ask what it is pushing out — sleep, play or people.');
-    else add('good', '<strong>Recreational screens</strong> are at or under about 2 hours.');
-    if (vals.family < 1) add('warn', '<strong>Family time:</strong> Shared meals and talk are a protective habit. Can you carve out a bit more?');
+    set.feedback(vals, add);
     if (left < 1) add('warn', '<strong>Downtime:</strong> The day looks packed. Kids also need unstructured time to rest and play.');
     const free = 24 - vals.sleep - vals.school;
-    if (free > 0) add('info', `Of the <strong>${fmtH(free)}</strong> awake outside school, about <strong>${Math.round(vals.screens / free * 100)}%</strong> goes to recreational screens.`);
+    if (free > 0) add('info', `Of the <strong>${fmtH(free)}</strong> awake and not at school or childcare, about <strong>${Math.round(vals.screens / free * 100)}%</strong> goes to screens.`);
   }
-  const saveBtn = h('button', { class: 'btn primary', type: 'button', onClick: () => { S.day = { ...vals }; save(); award('day'); toast('Snapshot saved to your Toolkit.'); } }, 'Save snapshot to my toolkit');
-  mount.append(h('div', { class: 'sliders' }, rows), barEl, fb, h('div', { class: 'row' }, saveBtn,
-    h('p', { class: 'tiny' }, 'Guidelines cited: Canadian 24-Hour Movement Guidelines (CSEP), WHO, AASM, Australian physical activity guidelines. Treat them as reference points.')));
+  const saveBtn = h('button', { class: 'btn primary', type: 'button', onClick: () => { S[set.key] = { ...vals }; save(); award(set.stamp); toast('Snapshot saved to your Toolkit.'); } }, 'Save snapshot to my toolkit');
+  mount.append(h('div', { class: 'sliders' }, rows), barEl, fb, h('div', { class: 'row' }, saveBtn, h('p', { class: 'tiny' }, set.note)));
   render();
 }
 
@@ -402,13 +431,13 @@ function initTransitions() {
   m.append(h('div', { class: 'acc' }, D.transitions.map((t, i) =>
     h('details', { open: i === 0 }, h('summary', {}, t.title), h('ol', {}, t.steps.map(s => h('li', {}, s)))))));
 }
-function initWheel() {
-  const m = $('#wheel');
+function initWheel(mountSel, getPool) {
+  const m = $(mountSel);
   const out = h('div', { class: 'wheel-out', 'aria-live': 'polite' }, 'Press spin! 🎡');
   const btn = h('button', { class: 'btn primary', type: 'button' }, 'Spin');
   btn.addEventListener('click', () => {
-    const pool = D.boredom.filter(b => b.ages.includes(S.age));
-    const pick = () => pool[rand(pool.length)].t;
+    const pool = getPool();
+    const pick = () => pool[rand(pool.length)];
     btn.disabled = true;
     if (reduceMotion) { out.textContent = pick(); btn.disabled = false; btn.textContent = 'Spin again'; return; }
     let n = 0;
@@ -420,11 +449,28 @@ function initWheel() {
   m.append(out, btn);
 }
 
+/* ---------- Early years: "instead of the screen" helper ---------- */
+function initCalm() {
+  const m = $('#calmHelper');
+  const detail = h('div', { class: 'calm-detail', 'aria-live': 'polite' });
+  const btns = D.eyCalm.map(it => {
+    const b = h('button', { class: 'calm-btn', type: 'button', 'aria-pressed': 'false' }, h('span', { 'aria-hidden': 'true' }, it.ico), ' ', it.label);
+    b.addEventListener('click', () => {
+      btns.forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true');
+      clear(detail).append(h('h3', {}, it.label), h('ul', {}, it.ideas.map(i => h('li', {}, i))),
+        h('p', { class: 'tiny' }, 'Be kind to yourself: a screen now and then is a normal part of family life.'));
+      award('eycalm');
+    });
+    return b;
+  });
+  m.append(h('div', { class: 'calm-grid' }, btns), detail);
+}
+
 /* ---------- Conversation starters ---------- */
 function initStarters() {
   $$('.starter').forEach(box => {
     const topic = box.dataset.topic;
-    const list = D.starters[topic];
+    const list = topic === 'early' ? D.eyStarters : D.starters[topic];
     let idx = rand(list.length);
     const q = h('p', { class: 'starter-q', 'aria-live': 'polite' });
     const star = h('button', { class: 'btn', type: 'button', 'aria-pressed': 'false' }, '☆ Save');
@@ -543,15 +589,21 @@ function renderToolkit() {
   const rules = D.aiRules.filter((_, i) => S.aiRules[i]);
   m.append(sec('🤖 Family AI rules', rules.length ? h('ul', { class: 'tips' }, rules.map(r => h('li', {}, r))) : empty('No rules chosen yet.', '#ai', 'Pick some →')));
 
-  if (S.day) {
-    m.append(sec('🗓️ Day snapshot', h('table', { class: 'tbl' }, h('tbody', {}, DAY.map(d => h('tr', {}, h('th', { scope: 'row' }, d.label), h('td', {}, fmtH(S.day[d.id])))),
-      h('tr', {}, h('th', { scope: 'row' }, 'Everything else'), h('td', {}, fmtH(24 - DAY.reduce((a, d) => a + S.day[d.id], 0))))))));
-  }
+  [['🗓️ Day snapshot', DAY, 'day'], ['🌱 Ages 3–5 day snapshot', DAY_EY, 'dayEY']].forEach(([title, cats, key]) => {
+    const v = S[key];
+    if (!v) return;
+    m.append(sec(title, h('table', { class: 'tbl' }, h('tbody', {}, cats.map(d => h('tr', {}, h('th', { scope: 'row' }, d.label), h('td', {}, fmtH(v[d.id])))),
+      h('tr', {}, h('th', { scope: 'row' }, 'Everything else'), h('td', {}, fmtH(24 - cats.reduce((a, d) => a + v[d.id], 0))))))));
+  });
 
   const done = D.safetyChecklist.filter((_, i) => S.setup[i]).length;
   const todo = D.safetyChecklist.filter((_, i) => !S.setup[i]);
   m.append(sec('🔧 Safety set-up', h('p', {}, `${done} of ${D.safetyChecklist.length} done.`), bar(done / D.safetyChecklist.length * 100, 'm-safety'),
     todo.length ? h('div', {}, h('h3', {}, 'Still to do'), h('ul', { class: 'tips' }, todo.map(t => h('li', { html: t })))) : h('p', {}, '🎉 All done!')));
+
+  const eyDone = D.eySetup.filter((_, i) => S.eySetup[i]).length;
+  if (eyDone) m.append(sec('🌱 Ages 3–5 safe-use', h('p', {}, `${eyDone} of ${D.eySetup.length} done.`), bar(eyDone / D.eySetup.length * 100, 'm-balance'),
+    eyDone < D.eySetup.length ? h('div', {}, h('h3', {}, 'Still to do'), h('ul', { class: 'tips' }, D.eySetup.filter((_, i) => !S.eySetup[i]).map(t => h('li', {}, t)))) : h('p', {}, '🎉 All done!')));
 
   m.append(sec('💬 Saved conversation starters', S.favs.length
     ? h('ul', { class: 'tips' }, S.favs.map(f => h('li', {}, f.t, ' ', h('button', { class: 'linkbtn no-print', type: 'button', 'aria-label': 'Remove: ' + f.t, onClick: () => { S.favs = S.favs.filter(x => x.t !== f.t); save(); renderToolkit(); initStartersRefresh(); } }, 'remove'))))
@@ -593,7 +645,13 @@ function boot() {
   initGame('#gameSafety', { ...D.games.safety });
   checklist('#aiRules', D.aiRules, S.aiRules);
   checklist('#safetyChecklist', D.safetyChecklist, S.setup, n => { if (n >= 5) award('setup'); });
-  initDay(); initQuality(); initPlan(); initTransitions(); initWheel();
+  initDay('#dayDesigner', DAY_SETS.main); initDay('#dayDesignerEY', DAY_SETS.early);
+  initQuality(); initPlan(); initTransitions();
+  initWheel('#wheel', () => D.boredom.filter(b => b.ages.includes(S.age)).map(b => b.t));
+  initWheel('#wheelEY', () => D.eyBoredom);
+  initCalm();
+  initGame('#gameGoodFit', { ...D.games.goodFit });
+  checklist('#eyChecklist', D.eySetup, S.eySetup, n => { if (n >= 5) award('eysetup'); });
   initStarters(); initPassphrase(); initUsername(); initHelp(); initChallenge(); initSources();
   renderAge(); updatePassport(); route();
 }

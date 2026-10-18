@@ -1,7 +1,8 @@
 # Family Tech Trail
 
-An interactive, research-based guide for parents of elementary-school children (ages 6–11) on three topics:
+An interactive, research-based guide for parents of preschool-to-elementary children (ages 3–11). A dedicated **🌱 Ages 3–5** tab covers preschool and kindergarten; three trails cover ages 6–11:
 
+- 🌱 **Ages 3–5 (preschool & kindergarten)** – daily picture (sleep, movement, screens), preschool day designer, screen-choice game, "instead of the screen" ideas, safe-use checklist
 - 🤖 **AI in education & life** – what AI is, fact-checking chatbots, homework "traffic light", family AI rules
 - ⚖️ **Media balance** – day designer, the "5 Cs" quality check, a printable Family Media Plan, "time's up" scripts
 - 🛡️ **Internet safety** – Go / Pause / Stop & tell game, privacy lab, set-up checklist, "what do I do if…?" help finder

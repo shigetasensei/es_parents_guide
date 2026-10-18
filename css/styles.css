@@ -20,7 +20,7 @@
   --c1: #5b6cff; --c2: #8d99ae; --c3: #2ec4b6; --c4: #f7b731; --c5: #ef6f6c; --c6: #a259ff;
   --radius: 18px;
   --shadow: 0 1px 2px rgba(31,36,48,.06), 0 8px 24px rgba(31,36,48,.07);
-  --font: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", Meiryo, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {

@@ -13,7 +13,11 @@ window.DATA = {
     { id: 'safety',   icon: '🛡️', label: 'Go / Pause / Stop' },
     { id: 'privacy',  icon: '🔐', label: 'Privacy lab' },
     { id: 'help',     icon: '🆘', label: 'Help finder' },
-    { id: 'setup',    icon: '🔧', label: 'Set-up checklist' }
+    { id: 'setup',    icon: '🔧', label: 'Set-up checklist' },
+    { id: 'eyday',    icon: '🌱', label: 'Ages 3–5: day designer' },
+    { id: 'eygame',   icon: '📺', label: 'Ages 3–5: screen choices' },
+    { id: 'eycalm',   icon: '🧸', label: 'Ages 3–5: calm-down ideas' },
+    { id: 'eysetup',  icon: '🔒', label: 'Ages 3–5: safe-use checklist' }
   ],
 
   checkin: [
@@ -116,6 +120,26 @@ window.DATA = {
         { q: 'Ask AI to point out mistakes in your paragraph, then fix them yourself.', a: 'y', why: 'This can support learning, but check with your teacher about whether it is allowed.' },
         { q: 'Tell a chatbot about a big worry instead of telling a person.', a: 'r', why: 'AI is not a safe replacement for trusted people. Tell a parent, teacher or counselor.' },
         { q: 'With a parent, use a kid-appropriate image tool to draw a dragon for fun.', a: 'g', why: 'Creative play together is a great way to explore what AI can and cannot do.' }
+      ]
+    },
+
+    goodFit: {
+      stamp: 'eygame', count: 8,
+      choices: [{ id: 'good', label: '✅ Good fit' }, { id: 'care', label: '🤔 Use with care' }, { id: 'skip', label: '🚫 Skip it' }],
+      wrapup: 'Rules of thumb for ages 3–5: choose slow, story-driven, ad-free content; stay close and talk about it; keep it away from sleep, meals and play; and remember that no single screen choice is a catastrophe — it is the pattern that counts.',
+      items: [
+        { q: 'A video call with grandparents who live far away.', a: 'good', why: 'Live, two-way conversation with people your child knows is a very different experience from watching. Children can join in, and relationships matter at this age.' },
+        { q: 'Autoplay clips on a phone, one after another, while you eat at a restaurant.', a: 'skip', why: 'Autoplay and endless recommendations are designed to keep kids watching and make stopping hard. Turn autoplay off and choose one thing with a clear end.' },
+        { q: 'A slow-paced, story-driven show you watch together, then act out the story afterward.', a: 'good', why: 'Co-viewing and talking about what you saw helps children connect it to real life, which is what the AAP advises for ages 2–5.' },
+        { q: 'A free game that keeps offering "watch an ad for a reward" and "buy now" buttons.', a: 'skip', why: 'Preschoolers cannot tell ads or in-app purchases from the game. Choose ad-free apps and lock purchases.' },
+        { q: 'Handing over a tablet to stop a meltdown in the grocery store — every time.', a: 'care', why: 'An occasional emergency is human. But the AAP advises against making media your only calming tool, and a 2023 study of 3–5-year-olds linked frequent device calming with more emotional reactivity over time (an association, not proof of cause). Practice other calm-down skills too.' },
+        { q: 'The TV on in the background all day while your child plays.', a: 'skip', why: 'Background TV competes with play and with talking together. Turn it off when nobody is really watching.' },
+        { q: 'A tablet in bed, right before sleep.', a: 'skip', why: 'The AAP suggests no screens for about an hour before bed and none in bedrooms overnight. Preschoolers need 10–13 hours of sleep including naps.' },
+        { q: 'An educational app designed with child-development experts that you play together.', a: 'good', why: 'Good apps with a clear learning goal, no ads and no pressure to keep playing can be fine, especially when you join in and talk about it.' },
+        { q: 'Letting a voice assistant or chatbot answer your child\'s endless "why?" questions while you are busy.', a: 'care', why: 'Young children may treat talking devices like people, and AI can be wrong. Use it together, say "it is a computer, not a person," and check surprising answers.' },
+        { q: 'Posting photos of your child (with school uniform or location) publicly online.', a: 'care', why: 'Your child cannot consent, and photos can reveal where they go to school. Share privately with family, and leave out names, uniforms and places.' },
+        { q: 'An e-book full of buttons and animations, read alone.', a: 'care', why: 'Lots of extras can pull attention away from the story. Reading aloud together — print or a simple e-book — builds language and closeness.' },
+        { q: 'A short video of a song your child loves, then you sing and dance along.', a: 'good', why: 'Screens that get kids moving, singing and interacting with you are a better fit than passive watching.' }
       ]
     },
 
@@ -225,6 +249,59 @@ window.DATA = {
     ]
   },
 
+  eyStarters: [
+    'Tell me about your favorite show. What happens in the story?',
+    'Can you teach me how to play your game? I want to learn!',
+    'What can we make or build together after this show?',
+    'Is that character being kind? How can you tell?',
+    'When we sit for a long time, how does your body feel? Let\'s wiggle!',
+    'If something on a screen feels scary or funny-in-a-bad-way, who can you tell?',
+    'Is the speaker a person or a computer? What can a computer not do?',
+    'When the timer rings, what should we do next? You choose!'
+  ],
+
+  eyCalm: [
+    { id: 'rest', ico: '🍽️', label: 'Waiting at a restaurant', ideas: ['Bring a small "wait bag": crayons, stickers, a mini notebook.', 'Play I-spy, "find something red," or a quiet story game.', 'Give a job: arrange the sugar and sauce packets, or count the forks.'] },
+    { id: 'car', ico: '🚗', label: 'A car ride', ideas: ['Sing songs, play a story CD or audiobook.', 'Window bingo: find a truck, a dog, a red door.', 'Sticker books or a small treasure bag that only comes out in the car.'] },
+    { id: 'feel', ico: '😤', label: 'Big feelings or a meltdown', ideas: ['Get low, stay close and name it: "You are so mad that we have to stop."', 'Try "smell the flower, blow out the candle" breaths together.', 'Offer a calm corner with soft toys and books. A screen once in a while is OK; try not to make it the only tool.'] },
+    { id: 'morning', ico: '⏰', label: 'The morning rush', ideas: ['Use a picture routine chart: dress, eat, teeth, shoes.', 'Race the song: "Can we finish before the song ends?"', 'Lay out clothes the night before and keep screens off until everyone is ready.'] },
+    { id: 'cook', ico: '🍳', label: 'You need to cook or work', ideas: ['Give a helper job: wash veggies, stir, set napkins.', 'Set up an activity box: play-dough, magnets, a puzzle, big paper and crayons.', 'If you need a screen, pick a calm, ad-free show with a clear end, and use a visible timer.'] },
+    { id: 'trip', ico: '✈️', label: 'A long trip or flight', ideas: ['Pack small surprises, wrapped, to open one at a time.', 'Download calm, ad-free shows in advance and plan when to use them.', 'Bring snacks, a sticker book and a favorite stuffed toy.'] },
+    { id: 'bed', ico: '🌙', label: 'Bedtime', ideas: ['Keep the same order every night: bath, teeth, pajamas, book, lights out.', 'Turn off screens about an hour before bed, and keep devices out of the bedroom.', 'Read a book together, or sing a quiet song.'] }
+  ],
+
+  eySetup: [
+    'My child uses kid-profile or kids-only apps, not the open internet or open video sites.',
+    'Autoplay is off wherever I can turn it off.',
+    'Purchases and downloads need my password or approval.',
+    'I pick the apps and shows ahead of time, and I check the ads and age rating.',
+    'Devices are used in shared spaces, not alone in a bedroom.',
+    'Screens go off about an hour before bed, and devices stay out of the bedroom overnight.',
+    'Smart speakers and smart toys have child settings on, and I know how to delete voice recordings.',
+    'Chat, comments and location sharing are off in every app my child uses.',
+    'I share photos of my child only privately, and without school names, uniforms or places.',
+    'My child knows the body-safety rule: "My body belongs to me, and I never keep secrets from my grown-ups."'
+  ],
+
+  eyBoredom: [
+    'Build a fort or a tent from blankets and chairs.',
+    'Pretend play: a restaurant, a shop, a vet clinic, a doll hospital.',
+    'Play-dough or kitchen-table "slime" (supervised).',
+    'Dance party: freeze when the music stops.',
+    'Water play at the sink or in a tub with cups and spoons.',
+    'Scavenger hunt: find something soft, round, red or tiny.',
+    'Draw with chalk outside, or with big crayons on big paper.',
+    'Make an obstacle course with cushions and pillows.',
+    'Look at picture books together and make up the story.',
+    'Wash toy cars or dolls in a bucket of soapy water.',
+    'Cook together: wash veggies, stir, make a snack.',
+    'Walk outside and collect leaves, sticks and stones to sort.',
+    'Build a tower with blocks, cups or recycled boxes.',
+    'Sing songs with hand motions, or make up a song.',
+    'Sticker scenes: make a picture with stickers on paper.',
+    'Play "Simon says" or "red light, green light."'
+  ],
+
   aiRules: [
     'We use AI tools together at first, in shared spaces.',
     'We never type names, school, address, birthdays or photos of people into AI tools.',
@@ -329,6 +406,14 @@ window.DATA = {
       { name: 'Artificial Intelligence and the Future of Teaching and Learning (2023)', org: 'U.S. Dept. of Education, Office of Educational Technology', url: 'https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf', note: 'Emphasizes keeping humans in the loop, equity, and safety.' },
       { name: 'AI Literacy Framework for primary and secondary education', org: 'European Commission & OECD', url: 'https://ailiteracyframework.org/', note: 'International framework for AI literacy competencies in schools.' },
       { name: 'AI ratings and risk assessments', org: 'Common Sense Media', url: 'https://www.commonsensemedia.org/ai-ratings', note: 'Independent reviews, including their assessment that AI companion apps are not suitable for under-18s.' }
+    ]},
+    { group: '🌱 Ages 3–5 (preschool & kindergarten)', items: [
+      { name: 'Guidelines on physical activity, sedentary behaviour and sleep for children under 5 (2019)', org: 'World Health Organization', url: 'https://www.who.int/publications/i/item/9789241550536', note: 'For ages 3–4: no more than 1 hour of sedentary screen time a day (less is better), 10–13 hours of sleep including naps, and at least 180 minutes of physical activity with at least 60 minutes energetic.' },
+      { name: 'Canadian 24-Hour Movement Guidelines for the Early Years (0–4)', org: 'CSEP', url: 'https://csepguidelines.ca/guidelines/early-years/', note: 'Similar whole-day recommendations for sleep, movement and screens, with practical tips for caregivers.' },
+      { name: 'Media and young children — HealthyChildren.org', org: 'American Academy of Pediatrics', url: 'https://www.healthychildren.org/English/family-life/Media/Pages/default.aspx', note: 'Parent-friendly pages. The AAP\'s earlier (2016) guidance for ages 2–5 suggested about 1 hour a day of high-quality programming, co-viewing, and media-free times and places.' },
+      { name: 'Frequently using digital devices to soothe young children may backfire', org: 'Michigan Medicine (about Radesky et al., JAMA Pediatrics, 2023)', url: 'https://michiganmedicine.org/health-lab/frequently-using-digital-devices-soothe-young-children-may-backfire', note: 'Plain-language summary of a study of children ages 3–5. It found an association between frequent device calming and more emotional reactivity, not proof of cause.' },
+      { name: 'Technology and interactive media as tools in early childhood programs (joint position statement)', org: 'NAEYC & Fred Rogers Center', url: 'https://www.naeyc.org/', note: 'Widely cited position on intentional, play-based, relationship-centered use of technology in early childhood. Search the NAEYC site for the statement title.' },
+      { name: 'Parent resources on early development and screens', org: 'ZERO TO THREE', url: 'https://www.zerotothree.org/', note: 'Non-profit with research-based guidance on early relationships, play and routines.' }
     ]},
     { group: '⚖️ Media balance', items: [
       { name: 'Family Media Plan', org: 'American Academy of Pediatrics (HealthyChildren.org)', url: 'https://www.healthychildren.org/English/fmp/Pages/MediaPlan.aspx', note: 'Free tool to build a personalized plan for media-free times and zones.' },

@@ -141,7 +141,7 @@ main:focus, h1:focus { outline: none; }
 .acc details[open] { border-color: var(--brand); }
 .acc details > :not(summary) { padding: 0 20px; }
 .acc details > :last-child { margin-bottom: 18px; }
-.acc ol { margin-top: 0; padding-left: 40px; }
+.acc ol, .acc ul { margin-top: 0; padding-left: 40px; }
 
 .tips { padding-left: 1.2em; margin: 0 0 1em; } .tips li { margin-bottom: .6em; }
 

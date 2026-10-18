@@ -118,6 +118,7 @@ window.DATA = {
         { q: 'Type your full name, school and address so a story can be "about you."', a: 'r', why: 'Never share personal information with AI tools. It may be stored or used.' },
         { q: 'Upload a photo of a classmate to an AI app to make a funny picture.', a: 'r', why: 'Other people\'s photos are private and edited pictures can hurt feelings. Ask permission and use only approved tools.' },
         { q: 'Ask AI to point out mistakes in your paragraph, then fix them yourself.', a: 'y', why: 'This can support learning, but check with your teacher about whether it is allowed.' },
+        { q: 'Use AI to help with part of a project, and tell your teacher exactly how you used it.', a: 'y', why: 'Being open about it is the right habit, but ask first whether it is allowed. For example, the IB says work produced by AI, even in part, is not the student\'s own, and any AI-generated content in assessed work must be credited. Follow your school\'s rules.' },
         { q: 'Tell a chatbot about a big worry instead of telling a person.', a: 'r', why: 'AI is not a safe replacement for trusted people. Tell a parent, teacher or counselor.' },
         { q: 'With a parent, use a kid-appropriate image tool to draw a dragon for fun.', a: 'g', why: 'Creative play together is a great way to explore what AI can and cannot do.' }
       ]
@@ -309,7 +310,8 @@ window.DATA = {
     'AI can help us learn, but our own work stays our own — we follow the school\'s rules.',
     'We tell a grown-up if AI says something scary, mean or confusing.',
     'AI is not a friend or a counselor. For feelings, we talk to people.',
-    'We ask before trying a new AI app, and we read the age rules.'
+    'We ask before trying a new AI app, and we read the age rules.',
+    'We follow our school\'s AI and academic-integrity rules (for example, at an IB school, AI help is credited and is not passed off as our own work).'
   ],
 
   quality: [
@@ -427,6 +429,9 @@ window.DATA = {
       { name: 'Screen Sense: research and resources', org: 'ZERO TO THREE', kind: 'Non-profit', url: 'https://www.zerotothree.org/screensense/', note: 'Non-profit guidance on screens for young children: quality and context over minutes, background TV, bedtime and co-use.' }
     ]},
     { group: '🤖 AI in education & life', id: 'ai', tab: 'ai', items: [
+      { name: 'Statement from the IB about ChatGPT and artificial intelligence in assessment and education', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://ibo.org/news/news-about-the-ib/statement-from-the-ib-about-chatgpt-and-artificial-intelligence-in-assessment-and-education/', note: 'The IB will not ban AI tools. Work produced by AI, even in part, is not the student\'s own, and AI-generated content in assessed work must be credited in the text and in the bibliography. Written mainly for IB assessment.' },
+      { name: 'Artificial intelligence (AI) in learning, teaching, and assessment', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://www.ibo.org/programmes/artificial-intelligence-ai-in-learning-teaching-and-assessment/', note: 'The IB\'s main page on AI: its position, the academic integrity policy\'s guidance on AI tools, and resources for schools.' },
+      { name: 'Artificial intelligence (AI) tools: questions and concerns', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://www.ibo.org/globalassets/new-structure/programmes/shared-resources/pdfs/artificial-intelligence-questions-and-concerns-en.pdf', note: 'Questions and answers from the IB about using AI tools in IB programmes.' },
       { name: 'AI4K12 — Five Big Ideas in AI', org: 'AAAI & CSTA', kind: 'Education & research', url: 'https://ai4k12.org/', note: 'Widely used framework for what students should understand about AI at each grade band.' },
       { name: 'Guidance for generative AI in education and research (2023)', org: 'UNESCO', kind: 'International', url: 'https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research', note: 'Human-centered approach, data privacy, teacher role, and age-appropriate use.' },
       { name: 'Artificial Intelligence and the Future of Teaching and Learning (2023)', org: 'U.S. Dept. of Education, Office of Educational Technology', kind: 'Government', url: 'https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf', note: 'Emphasizes keeping humans in the loop, equity, and safety.' },

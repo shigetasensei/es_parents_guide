@@ -623,9 +623,53 @@ function initChallenge() {
 /* ---------- Sources ---------- */
 function initSources() {
   const m = $('#sourcesMount');
-  D.sources.forEach(g => m.append(h('section', { class: 'panel' }, h('h2', {}, g.group),
-    h('ul', { class: 'src-list' }, g.items.map(s => h('li', {},
-      h('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name), h('span', { class: 'org' }, s.org), h('p', {}, s.note)))))));
+  const all = D.sources.flatMap(g => g.items.map(it => ({ ...it, group: g, topics: [g.id, ...(it.also || [])] })));
+  const chips = [['all', 'All'], ['early', '🌱 Ages 3–5'], ['ai', '🤖 AI'], ['balance', '⚖️ Balance'], ['safety', '🛡️ Safety'], ['tools', '🔧 Tools'], ['world', '🌍 Outside the U.S.']];
+  let topic = 'all', q = '', visible = [];
+  const count = h('p', { class: 'tiny', 'aria-live': 'polite' });
+  const list = h('div');
+  const search = h('input', { type: 'search', id: 'srcSearch', placeholder: 'e.g. sleep, NCMEC, screen time…', autocomplete: 'off' });
+  const chipBtns = chips.map(([id, label]) => {
+    const b = h('button', { class: 'filter-btn', type: 'button', 'aria-pressed': String(id === 'all') }, label);
+    b.addEventListener('click', () => { topic = id; chipBtns.forEach(x => x.setAttribute('aria-pressed', String(x === b))); render(); });
+    return b;
+  });
+  search.addEventListener('input', () => { q = search.value; render(); });
+
+  function render() {
+    clear(list); visible = [];
+    const needle = q.trim().toLowerCase();
+    D.sources.forEach(g => {
+      const items = all.filter(it => it.group === g && (topic === 'all' || it.topics.includes(topic)) &&
+        (!needle || `${it.name} ${it.org} ${it.kind} ${it.note}`.toLowerCase().includes(needle)));
+      if (!items.length) return;
+      visible.push({ g, items });
+      list.append(h('section', { class: 'panel' },
+        h('h2', { class: 'src-h' }, g.group, g.tab ? h('a', { class: 'src-see', href: '#' + g.tab }, 'See on the site →') : null),
+        h('ul', { class: 'src-list' }, items.map(it => h('li', {},
+          h('a', { href: it.url, target: '_blank', rel: 'noopener' }, it.name),
+          h('span', { class: 'org' }, `${it.org} · `, h('span', { class: 'kind' }, it.kind)),
+          h('p', {}, it.note))))));
+    });
+    const n = visible.reduce((a, v) => a + v.items.length, 0);
+    count.textContent = `Showing ${n} of ${all.length} resources`;
+    if (!n) list.append(h('p', { class: 'muted' }, 'No matches. Try a different word or filter.'));
+  }
+  function asText() {
+    return ['FAMILY TECH TRAIL — SOURCES & FURTHER READING', '']
+      .concat(visible.flatMap(v => [v.g.group, ...v.items.flatMap(it => [` - ${it.name} (${it.org})`, `   ${it.url}`]), '']))
+      .join('\n');
+  }
+  const tools = h('div', { class: 'row no-print' },
+    h('button', { class: 'btn', type: 'button', onClick: () => window.print() }, '🖨️ Print list'),
+    h('button', { class: 'btn', type: 'button', onClick: async () => {
+      try { await navigator.clipboard.writeText(asText()); toast('Copied the list to your clipboard.'); } catch (e) { toast('Copy isn\'t available here — try Print instead.'); }
+    } }, '📋 Copy as text'));
+  m.append(h('section', { class: 'panel src-tools no-print' },
+    h('div', { class: 'field' }, h('label', { for: 'srcSearch' }, 'Search the list'), search),
+    h('div', { class: 'filters', role: 'group', 'aria-label': 'Filter by topic' }, chipBtns),
+    count, tools), list);
+  render();
 }
 
 /* ---------- boot ---------- */

@@ -167,8 +167,8 @@ legend { font-weight: 600; padding: 0; margin-bottom: 10px; }
 .pill input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
 .field { margin-bottom: 18px; }
 .field label { display: block; font-weight: 600; margin-bottom: 6px; }
-input[type="text"], select { font: inherit; width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-height: 44px; }
-input[type="text"]:focus, select:focus { border-color: var(--brand); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent); }
+input[type="text"], input[type="search"], select { font: inherit; width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-height: 44px; }
+input[type="text"]:focus, input[type="search"]:focus, select:focus { border-color: var(--brand); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent); }
 .cb, .checks li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
 input[type="checkbox"] { width: 20px; height: 20px; margin-top: 4px; accent-color: var(--brand); flex: none; }
 .checks { list-style: none; padding: 0; margin: 0 0 16px; }
@@ -261,6 +261,15 @@ blockquote { margin: 0 0 8px; }
 .src-list a { font-weight: 600; } .src-list .org { display: block; font-size: .85rem; color: var(--muted); font-weight: 500; }
 .src-list p { margin: 4px 0 0; color: var(--muted); }
 
+/* sources toolbar */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.filter-btn { font: inherit; font-weight: 500; padding: 7px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); cursor: pointer; min-height: 40px; }
+.filter-btn:hover { border-color: var(--ink); }
+.filter-btn[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 600; }
+.src-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.src-see { font-size: .9rem; font-weight: 500; }
+.src-list .kind { display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .02em; padding: 1px 8px; border-radius: 6px; background: var(--surface-2); color: var(--muted); margin-left: 2px; }
+
 /* stamps */
 .stamp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin: 14px 0 20px; }
 .stamp { text-align: center; border: 1px dashed var(--line); border-radius: 10px; padding: 12px 6px; filter: grayscale(1); opacity: .5; }
@@ -285,6 +294,11 @@ dialog::backdrop { background: rgba(10,16,18,.55); }
   .panel { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
   .view[hidden] { display: none !important; }
   .plan-preview { position: static; }
+}
+
+@media print {
+  .src-list a[href]::after { content: " (" attr(href) ")"; font-size: .8em; color: #444; word-break: break-all; font-weight: 400; }
+  .src-see { display: none; }
 }
 
 @media print {

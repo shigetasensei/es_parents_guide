@@ -3,6 +3,7 @@
 An interactive, research-based guide for parents of preschool-to-elementary children (ages 3–11). A dedicated **🌱 Ages 3–5** tab covers preschool and kindergarten; three trails cover ages 6–11:
 
 - 🌱 **Ages 3–5 (preschool & kindergarten)** – daily picture (sleep, movement, screens), preschool day designer, screen-choice game, "instead of the screen" ideas, safe-use checklist
+- 🇯🇵 **Japan (日本)** – what MEXT, MHLW, the Children and Families Agency and the Japan Pediatric Association say, compared with international guidance, plus a directory of help lines in Japan
 - 🤖 **AI in education & life** – what AI is, fact-checking chatbots, homework "traffic light", family AI rules
 - ⚖️ **Media balance** – day designer, the "5 Cs" quality check, a printable Family Media Plan, "time's up" scripts
 - 🛡️ **Internet safety** – Go / Pause / Stop & tell game, privacy lab, set-up checklist, "what do I do if…?" help finder

@@ -569,8 +569,7 @@ function initHelp() {
     });
     return b;
   });
-  m.append(h('p', { class: 'notice' }, '🚨 If a child is in immediate danger, call your local emergency number (911 in the U.S.) first.'),
-    h('div', { class: 'help-grid' }, btns), detail);
+  m.append(h('div', { class: 'help-grid' }, btns), detail);
 }
 
 /* ---------- Toolkit ---------- */

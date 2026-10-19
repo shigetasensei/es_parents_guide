@@ -86,7 +86,10 @@ main:focus, h1:focus { outline: none; }
 .age button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); font-weight: 600; }
 .lang-btn { font: inherit; font-weight: 600; font-size: .9rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 5px 11px; border-radius: var(--radius-sm); cursor: pointer; white-space: nowrap; }
 .lang-btn:hover { border-color: var(--brand); color: var(--brand); }
-.howto { max-width: 62ch; margin: 1.1em 0 1.3em; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); font-size: .98rem; line-height: 1.65; }
+.howto { max-width: 62ch; margin: 1.1em 0 1.3em; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); font-size: .98rem; line-height: 1.55; }
+.howto p { margin: 0 0 .4em; }
+.howto ul { margin: 0; padding-left: 1.2em; }
+.howto li { margin: .3em 0; }
 .passport-btn { background: var(--accent); color: #fff; font-weight: 600; padding: 6px 12px; border-radius: var(--radius-sm); }
 @media (min-width: 1260px) { .nav { order: 0; width: auto; justify-content: center; } .bar { padding-bottom: 0; } .tools { padding-bottom: 0; } .nav a { padding: 16px 10px; } }
 @media (max-width: 520px), (min-width: 1260px) { .tools .age-label { display: none; } }

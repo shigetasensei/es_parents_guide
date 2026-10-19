@@ -710,6 +710,10 @@ function boot() {
     const b = e.target.closest('[data-age]');
     if (b) { S.age = b.dataset.age; save(); renderAge(); }
   });
+  /* Japanese: hand the current page to Google Translate. Hidden once the page is already inside a translation. */
+  const langBtn = $('#langBtn');
+  if (location.hostname.endsWith('.translate.goog') || window.self !== window.top) langBtn.hidden = true;
+  else langBtn.addEventListener('click', () => { location.href = 'https://translate.google.com/translate?sl=en&tl=ja&u=' + encodeURIComponent(location.href); });
   $('#passportBtn').addEventListener('click', () => { const d = $('#passportDlg'); if (d.showModal) d.showModal(); else d.setAttribute('open', ''); });
   $$('[data-scroll]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault();

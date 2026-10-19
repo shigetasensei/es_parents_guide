@@ -84,6 +84,9 @@ main:focus, h1:focus { outline: none; }
 .age-label { font-size: .75rem; color: var(--muted); padding: 0 6px 0 10px; }
 .age button, .passport-btn { font: inherit; border: 0; background: transparent; color: var(--ink); padding: 5px 11px; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: .9rem; }
 .age button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); font-weight: 600; }
+.lang-btn { font: inherit; font-weight: 600; font-size: .9rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 5px 11px; border-radius: var(--radius-sm); cursor: pointer; white-space: nowrap; }
+.lang-btn:hover { border-color: var(--brand); color: var(--brand); }
+.howto { max-width: 62ch; margin: 1.1em 0 1.3em; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); font-size: .98rem; line-height: 1.65; }
 .passport-btn { background: var(--accent); color: #fff; font-weight: 600; padding: 6px 12px; border-radius: var(--radius-sm); }
 @media (min-width: 1260px) { .nav { order: 0; width: auto; justify-content: center; } .bar { padding-bottom: 0; } .tools { padding-bottom: 0; } .nav a { padding: 16px 10px; } }
 @media (max-width: 520px), (min-width: 1260px) { .tools .age-label { display: none; } }
@@ -407,6 +410,7 @@ button, a, summary, label, select { touch-action: manipulation; }
   .choice { width: 100%; min-height: 52px; text-align: left; }
   .g-end .btn, .feedback + .btn, .game .btn.primary { width: 100%; justify-content: center; }
   .pill label { padding: 10px 18px; min-height: 44px; }
+  .lang-btn, .passport-btn { min-height: 44px; }
   .pills { gap: 8px; }
   .help-btn, .calm-btn { min-height: 56px; }
   .filter-btn { min-height: 44px; }

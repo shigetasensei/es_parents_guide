@@ -70,6 +70,8 @@ function route() {
   VIEWS.forEach(v => { $('#view-' + v).hidden = v !== id; });
   $$('[data-nav]').forEach(a => { if (a.dataset.nav === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   if (id === 'toolkit') renderToolkit();
+  const active = $('[data-nav="' + id + '"]');
+  if (active && active.scrollIntoView) active.scrollIntoView({ inline: 'center', block: 'nearest' });
   if (!firstRoute) {
     window.scrollTo(0, 0);
     const h1 = $('#view-' + id + ' h1'); if (h1) h1.focus({ preventScroll: true });
@@ -79,7 +81,13 @@ function route() {
 window.addEventListener('hashchange', route);
 
 /* ---------- age lens ---------- */
+function ageToggle() {
+  const g = h('div', { class: 'age age-inline', role: 'group', 'aria-label': "My child's age group" }, h('span', { class: 'age-label' }, 'Child age'));
+  [['6-7', '6–7'], ['8-9', '8–9'], ['10-11', '10–11']].forEach(([v, l]) => g.append(h('button', { type: 'button', 'data-age': v, 'aria-pressed': 'false' }, l)));
+  return g;
+}
 function renderAge() {
+  $$('.agetips').forEach(box => { if (!box.previousElementSibling || !box.previousElementSibling.classList.contains('age-inline')) box.before(ageToggle()); });
   $$('[data-age]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.age === S.age)));
   $$('[data-age-chip]').forEach(c => { c.textContent = AGE_LABEL[S.age]; });
   $$('.agetips').forEach(box => {
@@ -705,7 +713,10 @@ function initSources() {
 
 /* ---------- boot ---------- */
 function boot() {
-  $$('[data-age]').forEach(b => b.addEventListener('click', () => { S.age = b.dataset.age; save(); renderAge(); }));
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-age]');
+    if (b) { S.age = b.dataset.age; save(); renderAge(); }
+  });
   $('#passportBtn').addEventListener('click', () => { const d = $('#passportDlg'); if (d.showModal) d.showModal(); else d.setAttribute('open', ''); });
   $$('[data-scroll]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault();

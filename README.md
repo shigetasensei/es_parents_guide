@@ -1,6 +1,6 @@
 # ES Tech Talk@CA
 
-An interactive, research-based guide for parents of preschool-to-elementary children (ages 3–11). A dedicated **🌱 Ages 3–5** tab covers preschool and kindergarten; three trails cover ages 6–11:
+An interactive, research-based guide for parents of preschool-to-elementary children (ages 3–11). A dedicated **🌱 Ages 3–5** guide (linked from the home page and the age lens) covers preschool and kindergarten; three trails cover ages 6–11:
 
 - 🌱 **Ages 3–5 (preschool & kindergarten)** – daily picture (sleep, movement, screens), preschool day designer, screen-choice game, "instead of the screen" ideas, safe-use checklist
 - 🇯🇵 **Japan (日本)** – what MEXT, MHLW, the Children and Families Agency and the Japan Pediatric Association say, compared with international guidance, plus a directory of help lines in Japan

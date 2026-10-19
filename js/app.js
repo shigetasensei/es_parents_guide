@@ -28,7 +28,7 @@ function rand(n) {
   try { const b = new Uint32Array(1); crypto.getRandomValues(b); return b[0] % n; }
   catch (e) { return Math.floor(Math.random() * n); }
 }
-const AGE_LABEL = { '6-7': 'Ages 6–7', '8-9': 'Ages 8–9', '10-11': 'Ages 10–11' };
+const AGE_LABEL = { '3-5': 'Ages 3–5', '6-7': 'Ages 6–7', '8-9': 'Ages 8–9', '10-11': 'Ages 10–11' };
 
 /* ---------- state (localStorage with safe fallback) ---------- */
 const KEY = 'familyTechTrail.v1'; // key kept so existing visitors keep their saved data
@@ -72,9 +72,10 @@ function route() {
     if (v) { target = el; id = v.id.replace('view-', ''); } else id = 'home';
   }
   VIEWS.forEach(v => { $('#view-' + v).hidden = v !== id; });
-  $$('[data-nav]').forEach(a => { if (a.dataset.nav === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  const navId = id === 'early' ? 'home' : id;   // the Ages 3–5 guide lives under Home
+  $$('[data-nav]').forEach(a => { if (a.dataset.nav === navId) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   if (id === 'toolkit') renderToolkit();
-  const active = $('[data-nav="' + id + '"]');
+  const active = $('[data-nav="' + navId + '"]');
   if (active && active.scrollIntoView) active.scrollIntoView({ inline: 'center', block: 'nearest' });
   if (target) {
     target.scrollIntoView({ block: 'start' });
@@ -89,7 +90,7 @@ window.addEventListener('hashchange', route);
 /* ---------- age lens ---------- */
 function ageToggle() {
   const g = h('div', { class: 'age age-inline', role: 'group', 'aria-label': "My child's age group" }, h('span', { class: 'age-label' }, 'Child age'));
-  [['6-7', '6–7'], ['8-9', '8–9'], ['10-11', '10–11']].forEach(([v, l]) => g.append(h('button', { type: 'button', 'data-age': v, 'aria-pressed': 'false' }, l)));
+  [['3-5', '3–5'], ['6-7', '6–7'], ['8-9', '8–9'], ['10-11', '10–11']].forEach(([v, l]) => g.append(h('button', { type: 'button', 'data-age': v, 'aria-pressed': 'false' }, l)));
   return g;
 }
 function renderAge() {
@@ -98,7 +99,8 @@ function renderAge() {
   $$('[data-age-chip]').forEach(c => { c.textContent = AGE_LABEL[S.age]; });
   $$('.agetips').forEach(box => {
     const tips = D.ageTips[box.dataset.topic][S.age];
-    clear(box).append(h('ul', { class: 'tips' }, tips.map(t => h('li', { html: t }))));
+    clear(box).append(h('ul', { class: 'tips' }, tips.map(t => h('li', { html: t }))),
+      S.age === '3-5' ? h('p', { class: 'early-callout' }, '🌱 ', h('a', { href: '#early' }, 'Open the full Ages 3–5 guide'), ' — daily picture, preschool day designer, screen-choice game, calm-down ideas and a safe-use checklist.') : null);
   });
 }
 
@@ -739,7 +741,7 @@ function boot() {
   checklist('#safetyChecklist', D.safetyChecklist, S.setup, n => { if (n >= 5) award('setup'); });
   initDay('#dayDesigner', DAY_SETS.main); initDay('#dayDesignerEY', DAY_SETS.early);
   initQuality(); initPlan(); initTransitions();
-  initWheel('#wheel', () => D.boredom.filter(b => b.ages.includes(S.age)).map(b => b.t));
+  initWheel('#wheel', () => S.age === '3-5' ? D.eyBoredom : D.boredom.filter(b => b.ages.includes(S.age)).map(b => b.t));
   initWheel('#wheelEY', () => D.eyBoredom);
   initCalm();
   initGame('#gameGoodFit', { ...D.games.goodFit });

@@ -99,8 +99,8 @@ function renderAge() {
   $$('[data-age-chip]').forEach(c => { c.textContent = AGE_LABEL[S.age]; });
   $$('.agetips').forEach(box => {
     const tips = D.ageTips[box.dataset.topic][S.age];
-    clear(box).append(h('ul', { class: 'tips' }, tips.map(t => h('li', { html: t }))),
-      S.age === '3-5' ? h('p', { class: 'early-callout' }, '🌱 ', h('a', { href: '#early' }, 'Open the full Ages 3–5 guide'), ' — daily picture, preschool day designer, screen-choice game, calm-down ideas and a safe-use checklist.') : null);
+    clear(box).append(...[h('ul', { class: 'tips' }, tips.map(t => h('li', { html: t }))),
+      S.age === '3-5' ? h('p', { class: 'early-callout' }, '🌱 ', h('a', { href: '#early' }, 'Open the full Ages 3–5 guide'), ' — daily picture, preschool day designer, screen-choice game, calm-down ideas and a safe-use checklist.') : null].filter(Boolean));
   });
 }
 

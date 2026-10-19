@@ -65,14 +65,20 @@ function award(id) {
 const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'japan', 'toolkit', 'sources'];
 let firstRoute = true;
 function route() {
-  let id = location.hash.slice(1);
-  if (!VIEWS.includes(id)) id = 'home';
+  let id = location.hash.slice(1), target = null;
+  if (!VIEWS.includes(id)) {
+    // a link to something inside a view (for example #caway or #g-s2)
+    const el = id ? document.getElementById(id) : null, v = el && el.closest('.view');
+    if (v) { target = el; id = v.id.replace('view-', ''); } else id = 'home';
+  }
   VIEWS.forEach(v => { $('#view-' + v).hidden = v !== id; });
   $$('[data-nav]').forEach(a => { if (a.dataset.nav === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   if (id === 'toolkit') renderToolkit();
   const active = $('[data-nav="' + id + '"]');
   if (active && active.scrollIntoView) active.scrollIntoView({ inline: 'center', block: 'nearest' });
-  if (!firstRoute) {
+  if (target) {
+    target.scrollIntoView({ block: 'start' });
+  } else if (!firstRoute) {
     window.scrollTo(0, 0);
     const h1 = $('#view-' + id + ' h1'); if (h1) h1.focus({ preventScroll: true });
   }

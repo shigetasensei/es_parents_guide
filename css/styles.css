@@ -15,6 +15,7 @@
   --bal: #3e5c68;  --bal-soft: #e5eaec;
   --saf: #b94a32;  --saf-soft: #f5e6e0;
   --early: #9a6b17; --early-soft: #f3ecd9;
+  --accent-ink: #ffffff;
   --sun: var(--accent);
   --good: #2f7d4f; --good-soft: #e4f0e8;
   --warn: #8f5510; --warn-soft: #f6ebda;
@@ -31,6 +32,7 @@
     --bg: #121a1d; --surface: #1a2428; --surface-2: #222e33; --ink: #ecefea; --muted: #9fb0b4; --line: #33434a;
     --brand: #3fb5a8; --brand-ink: #0b1417; --accent: #e58168; --accent-soft: #35221d;
     --early: #d9a441; --early-soft: #2f2a17;
+    --accent-ink: #1a0f0c;
     --ai: #3fb5a8; --ai-soft: #17302e; --bal: #8fb0bd; --bal-soft: #1e2b31; --saf: #e58168; --saf-soft: #35221d;
     --good: #6cc48f; --good-soft: #173424; --warn: #e6b36a; --warn-soft: #3a2b12; --bad: #f08a7c; --bad-soft: #3d1f1c;
     --c1: #8fb0bd; --c2: #5d6b70; --c3: #3fb5a8; --c4: #d9a441; --c5: #e58168; --c6: #a794bb;
@@ -282,6 +284,27 @@ blockquote { margin: 0 0 8px; }
 .jp-hours { font-size: .88rem; color: var(--muted); }
 .jp-help { margin-top: 14px; padding-top: 6px; border-top: 1px solid var(--line); } .jp-help h4 { margin-top: 12px; } .jp-help ul { padding-left: 1.2em; }
 
+/* the CA Way */
+.caway { border-top: 4px solid var(--accent); }
+.caway .eyebrow { margin-bottom: .4em; }
+.caway-cols { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); margin: 20px 0 16px; }
+.caway-card { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.caway-card header { background: var(--accent); color: var(--accent-ink); padding: 14px 18px 12px; }
+.caway-card header h3 { margin: 0 0 .15em; font-size: 1.25rem; letter-spacing: .02em; }
+.caway-card header p { margin: 0; font-size: .92rem; line-height: 1.45; opacity: .95; }
+.caway-body { padding: 4px 18px 8px; }
+.caway-item { padding: 14px 0; border-top: 1px solid var(--line); } .caway-item:first-child { border-top: 0; }
+.caway-item .rule { font-weight: 600; margin-bottom: .3em; }
+.athome { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.6; } .athome strong:first-child { color: var(--accent); }
+.caway-all { margin: 8px 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.caway-all summary { cursor: pointer; font-weight: 600; padding: 14px 18px; min-height: 48px; }
+.caway-all[open] summary { border-bottom: 1px solid var(--line); }
+.caway-all .tbl-wrap { margin: 0; border: 0; border-radius: 0 0 10px 10px; }
+.caway-table ul { margin: 0; padding-left: 1.1em; } .caway-table li { margin-bottom: .2em; }
+.caway-table tr.hl > th, .caway-table tr.hl > td { background: var(--accent-soft); }
+.caway-table tr.hl > th { border-left: 4px solid var(--accent); color: var(--accent); }
+.ca-banner { border-left-color: var(--accent); }
+
 /* sources toolbar */
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
 .filter-btn { font: inherit; font-weight: 500; padding: 7px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); cursor: pointer; min-height: 40px; }
@@ -371,6 +394,9 @@ button, a, summary, label, select { touch-action: manipulation; }
   .cmp td { padding: 8px 0; border: 0; }
   .cmp td + td { border-top: 1px solid var(--line); }
   .cmp td::before { content: attr(data-label); display: block; font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .caway-table tr.hl { border-color: var(--accent); background: var(--accent-soft); }
+  .caway-table tr.hl > th, .caway-table tr.hl > td { background: transparent; border-left: 0; }
+  .caway-cols { gap: 14px; }
   .plan-card { padding: 20px 18px; }
   dialog { max-width: calc(100vw - 24px); }
   .site-footer { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }

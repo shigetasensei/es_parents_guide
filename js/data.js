@@ -17,7 +17,9 @@ window.DATA = {
     { id: 'eyday',    icon: '🌱', label: 'Ages 3–5: day designer' },
     { id: 'eygame',   icon: '📺', label: 'Ages 3–5: screen choices' },
     { id: 'eycalm',   icon: '🧸', label: 'Ages 3–5: calm-down ideas' },
-    { id: 'eysetup',  icon: '🔒', label: 'Ages 3–5: safe-use checklist' }
+    { id: 'eysetup',  icon: '🔒', label: 'Ages 3–5: safe-use checklist' },
+    { id: 'ggame',    icon: '🎮', label: 'Gaming: Go / Pause / Stop' },
+    { id: 'gsetup',   icon: '🕹️', label: 'Gaming set-up checklist' }
   ],
 
   checkin: [
@@ -72,6 +74,26 @@ window.DATA = {
 
   /* ---------- Games: choice engine ---------- */
   games: {
+    gaming: {
+      stamp: 'ggame', count: 8,
+      choices: [{ id: 'go', label: '🟢 Go' }, { id: 'pause', label: '🟡 Pause' }, { id: 'stop', label: '🔴 Stop & tell' }],
+      wrapup: 'Go = fine. Pause = check with a grown-up first. Stop & tell = leave, mute, block, report and tell a trusted adult. You will not be in trouble for telling.',
+      items: [
+        { q: 'A classmate invites you to a private Minecraft world with other kids you both know.', a: 'go', why: 'Playing with friends you really know, in a space your parents know about, is the best way to game online.' },
+        { q: 'A player you have never met says, "Add me on another app and I\'ll give you free Robux."', a: 'stop', why: 'Offers of "free" coins and requests to move to another app are classic scam and grooming warning signs. Don\'t reply, block and report the player, and tell a grown-up.' },
+        { q: 'A pop-up says, "Only 2 minutes left! Buy this skin now!"', a: 'pause', why: 'Countdown timers are designed to rush you. Never buy without asking, and show the grown-up who sets up purchases.' },
+        { q: 'In a team match someone asks, "What school do you go to? Do you live in Japan?"', a: 'stop', why: 'Never share your school, address or where you live. Mute or block, report, and tell a grown-up. You are not in trouble.' },
+        { q: 'You want to download a new game a friend told you about.', a: 'pause', why: 'Ask first. A parent can check the rating (ESRB or CERO), the "Users Interact" and "In-Game Purchases" labels, and a review.' },
+        { q: 'A game offers a mystery box for real money, "with a chance at a rare item."', a: 'pause', why: 'You don\'t know what you will get, and that is the point. The ESRB labels these "Includes Random Items." Ask a grown-up and talk about why games do this.' },
+        { q: 'A teammate keeps shouting mean things and swearing in voice chat.', a: 'stop', why: 'Mute or leave, block, report, and tell a grown-up. It is not your fault and you will not lose the game for telling.' },
+        { q: 'Your parent set a 30-minute timer. At the 5-minute warning, you save your game at a good stopping point.', a: 'go', why: 'Agreeing on the end first, and using the warning to stop at a natural point, makes "game over" much easier.' },
+        { q: 'A friend asks for your login so they can play on your account while you eat dinner.', a: 'stop', why: 'Passwords are only shared with parents. Accounts can be taken over or lose items, and the game company can lock them.' },
+        { q: 'A video says, "Click the link below for free V-Bucks!"', a: 'stop', why: 'Free in-game currency links are a common scam. Don\'t click, and tell a grown-up.' },
+        { q: 'You can\'t beat a level and you feel really, really angry.', a: 'pause', why: 'Big feelings are normal. Pause, step away, breathe, get a drink, and talk to someone before you try again.' },
+        { q: 'You are playing a co-op game with a parent or sibling in the living room.', a: 'go', why: 'Playing together in a shared space is a low-risk way to enjoy games, and you can teach them something too.' }
+      ]
+    },
+
     aiNot: {
       stamp: 'ainot', count: 8,
       choices: [{ id: 'ai', label: '🤖 AI' }, { id: 'not', label: '⚙️ Not AI' }],
@@ -231,10 +253,43 @@ window.DATA = {
         'Discuss cyberbullying (as target, bystander, or participant) and the "would I say it in person?" test.',
         'Name the hard topics early: pressure for pictures, online "friends" who want secrets, and sextortion. Reassure: "It\'s never your fault, and you can tell me."'
       ]
+    },
+    gaming: {
+      '3-5': [
+        'Choose simple, calm games rated <strong>E</strong> and play <strong>together</strong> on a shared device. No chat and no open online play.',
+        'Try to avoid violent games. The AAP advises excluding violent content for children under 6, who can\'t yet tell fantasy from reality.',
+        'Turn on purchase passwords and a play-time limit <strong>before</strong> you hand over the device.'
+      ],
+      '6-7': [
+        'Stick to <strong>E-rated</strong> games and play <strong>side by side</strong>. Co-play shows you what the game is like and makes stopping easier.',
+        'Choose single-player or local play with family, and keep online chat off.',
+        'Agree on the end before you start ("two matches" or "until the timer rings") and use a visible timer.'
+      ],
+      '8-9': [
+        'Online play often starts now. Set chat to <strong>friends-only (or off)</strong> and say yes only to people you both know in real life.',
+        'Before a new game, check the rating, the "Users Interact" and "In-Game Purchases" labels, and a Common Sense Media review. (Common Sense lists Minecraft as best for 8+ and Roblox for 13+.)',
+        'Teach the "never share" list from The CA Way: <strong>YAPPY</strong> — Your full name, Address, Password, Phone number and Your plan.'
+      ],
+      '10-11': [
+        'Kids this age want what their friends play, such as <strong>Fortnite</strong> (ESRB T; Common Sense says 13+). Decide as a family and use the game\'s parental controls for friend requests, voice and text chat, and spending.',
+        'Talk about <strong>"free" games and loot boxes</strong>: how games nudge you to keep playing and spending. Ask, "What does this game want me to do next?"',
+        'Agree who they can talk to on headsets, and practice <strong>mute, block, report and tell</strong>. Watch for requests to move to another app or keep secrets.',
+        'Protect sleep: gaming ends at least an hour before bed, devices charge outside bedrooms, and school-night and weekend limits are written down together. Kids push back less on rules they helped write.'
+      ]
     }
   },
 
   starters: {
+    gaming: [
+      'What is your favorite game right now? What makes it fun, and can you teach me to play?',
+      'Who do you play with? How do you know them?',
+      'Has anyone said something mean or weird in a game? What would you do?',
+      'What do you think the game wants you to do: keep playing, or buy something? How can you tell?',
+      'How do you feel after a long session: happy, grumpy, tired? What helps you stop?',
+      'If a player offered free coins for your password, what would you say?',
+      'What makes a good teammate? How do you want to be treated in chat?',
+      'What would a fair family rule be for school nights, and for weekends?'
+    ],
     ai: [
       'What do you think AI is? Where do you think we use it at home?',
       'If a chatbot told you something surprising, how could we check if it is true?',
@@ -367,6 +422,19 @@ window.DATA = {
     { t: 'Have an indoor picnic.', ages: ['6-7', '8-9'] }
   ],
 
+  gamingSetup: [
+    'Make a child account or profile on each console, app and game, with your child\'s real age. Don\'t let them play on yours.',
+    'Turn on purchase protection: a password or "ask to buy" for purchases, and no card saved on a child\'s device.',
+    'Set chat to friends-only or off, and turn voice chat off for younger children.',
+    'Set a daily play-time limit and a bedtime cut-off in the platform\'s parental-controls app.',
+    'Check each new game: the ESRB or CERO rating, the "Users Interact" and "In-Game Purchases" labels, and a Common Sense Media review.',
+    'Play each new game with your child for ten minutes before saying yes.',
+    'Keep consoles and computers in a shared room, and charge devices outside bedrooms overnight.',
+    'Pick a screen name that doesn\'t reveal name, school or location, and go over <strong>YAPPY</strong> (full name, address, password, phone number and your plan).',
+    'Agree on your "game over" routine: a warning, a stopping point and what happens next.',
+    'Tell your child: "If anything in a game feels weird or mean, tell me. You will not be in trouble."'
+  ],
+
   safetyChecklist: [
     'Device-level parental controls are set up (Apple Screen Time, Google Family Link, Microsoft Family Safety or similar).',
     'App store downloads and purchases need my approval.',
@@ -475,7 +543,7 @@ window.DATA = {
       { name: 'Parents\' Ultimate Guides: Apps, Devices & Online Safety', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/parents-ultimate-guides', also: ['ai', 'balance', 'early'], note: 'Step-by-step parent guides to popular apps, games and devices, with how-to guides for parental controls and safety settings.' },
       { name: 'Parents\' Ultimate Guide to Parental Controls', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-parental-controls', also: ['balance', 'early'], note: 'How to choose and set up parental controls, with the reminder that controls help but a family conversation matters most.' },
       { name: 'Parents\' Ultimate Guide to YouTube', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-youtube', also: ['early'], note: 'What parents should know about YouTube and YouTube Kids, Restricted Mode and supervised accounts.' },
-      { name: 'Parents\' Ultimate Guide to Roblox', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-roblox', note: 'Safety, spending and chat concerns for the Roblox game platform, plus how to use its parental controls.' },
+      { name: 'Parents\' Ultimate Guide to Roblox', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-roblox', also: ['gaming'], note: 'Safety, spending and chat concerns for the Roblox game platform, plus how to use its parental controls.' },
       { name: 'Be Internet Awesome', org: 'Google (with FOSI, ConnectSafely and the Internet Keep Safe Coalition)', kind: 'Company tool', url: 'https://beinternetawesome.withgoogle.com/en_us', also: ['ai'], note: 'Free online-safety program for kids: the Interland game and five lessons (Smart, Alert, Strong, Kind, Brave), a family guide and pledge, and an AI literacy guide for grades 2–8. A company program, not independent research.' },
       { name: 'Be Internet Awesome for educators', org: 'Google', kind: 'Company tool', url: 'https://beinternetawesome.withgoogle.com/en_us/educators', note: 'Free lesson plans, printable activities and slides for each lesson. No login or personal information needed.' },
       { name: 'Family Online Safety Institute (FOSI)', org: 'Family Online Safety Institute', kind: 'Non-profit', url: 'https://fosi.org/', also: ['ai'], note: 'International non-profit working on online safety for families, with research, parent resources and policy work.' },
@@ -491,6 +559,25 @@ window.DATA = {
       { name: '988 Suicide & Crisis Lifeline', org: '988 Lifeline (U.S.)', kind: 'Government', url: 'https://988lifeline.org/', note: 'Call or text 988 in the U.S. if a child or family member is in crisis. For emergencies, call 911.' },
       { name: 'Parent guides to apps, games and social media', org: 'ConnectSafely', kind: 'Non-profit', url: 'https://connectsafely.org/parentguides/', note: 'Non-profit guides for popular platforms and safety settings.' },
       { name: 'Age ratings and reviews', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/', also: ['early'], note: 'Independent reviews of movies, games, apps and more by age.' }
+    ]},
+    { group: '🎮 Gaming', id: 'gaming', tab: 'gaming', items: [
+      { name: 'Video Games: Establish Your Family\'s Own Rating System', org: 'American Academy of Pediatrics (HealthyChildren.org)', kind: 'Pediatric & health', url: 'https://www.healthychildren.org/English/family-life/Media/Pages/Video-Games-Set-Your-Own-Ratings-System.aspx', also: ['balance'], note: 'Using ESRB and independent ratings, playing along, parental controls and shared spaces.' },
+      { name: 'Unhealthy Video Gaming: What Parents Can Do to Prevent It', org: 'American Academy of Pediatrics (HealthyChildren.org)', kind: 'Pediatric & health', url: 'https://www.healthychildren.org/English/family-life/Media/Pages/Unhealthy-Video-Gaming.aspx', also: ['balance'], note: 'Signs that gaming is crowding out homework, sleep, exercise and relationships, and what parents can do.' },
+      { name: 'ESRB ratings guide', org: 'Entertainment Software Rating Board (ESRB)', kind: 'Industry rating board', url: 'https://www.esrb.org/ratings-guide/', note: 'What E, E10+, T, M and AO mean, plus content descriptors and interactive elements such as In-Game Purchases and Users Interact.' },
+      { name: 'Selecting Appropriate Video Games', org: 'ESRB', kind: 'Industry rating board', url: 'https://www.esrb.org/tools-for-parents/family-gaming-guide/selecting-appropriate-video-games/', note: 'The ESRB\'s family gaming guide to choosing games.' },
+      { name: 'Rating System', org: 'CERO (Computer Entertainment Rating Organization)', kind: 'Industry rating board', url: 'https://www.cero.gr.jp/en/publics/index/17/', also: ['japan'], note: 'Japan\'s age ratings for games: A (all ages), B (12+), C (15+), D (17+), Z (18+).' },
+      { name: 'Addictive behaviours: Gaming disorder', org: 'World Health Organization', kind: 'International', url: 'https://www.who.int/news-room/questions-and-answers/item/addictive-behaviours-gaming-disorder', also: ['balance'], note: 'What the ICD-11 diagnosis of gaming disorder does and doesn\'t mean.' },
+      { name: 'Parents\' Ultimate Guide to Fortnite', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-fortnite', also: ['safety'], note: 'Age advice, chat and spending concerns, and parental controls for Fortnite.' },
+      { name: 'Minecraft vs. Roblox: How These Games Stack Up for Kids', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/articles/minecraft-vs-roblox-how-these-games-stack-up-for-kids', also: ['safety'], note: 'Age recommendations and safety differences between two popular games.' },
+      { name: 'Parental Controls Overview', org: 'Roblox', kind: 'Company tool', url: 'https://en.help.roblox.com/hc/en-us/articles/30428310121620-Parental-Controls-Overview', also: ['tools', 'safety'], note: 'Chat, maturity level, time limits and spending controls for Roblox accounts.' },
+      { name: 'Nintendo Switch Parental Controls app', org: 'Nintendo', kind: 'Company tool', url: 'https://www.nintendo.com/us/mobile-apps/parental-controls/', also: ['tools'], note: 'Free app for daily play-time limits, a bedtime and play-time reports.' },
+      { name: 'Xbox Family Settings app', org: 'Microsoft (Xbox)', kind: 'Company tool', url: 'https://www.xbox.com/en-US/apps/family-settings-app', also: ['tools'], note: 'Screen-time schedules, spending controls and ask-to-buy for Xbox.' },
+      { name: 'PlayStation Family App', org: 'Sony (PlayStation)', kind: 'Company tool', url: 'https://www.playstation.com/en-us/ps-family-app/', also: ['tools'], note: 'Playtime, spending limits and communication controls for PlayStation.' },
+      { name: 'Online gaming advice hub', org: 'Internet Matters', kind: 'Non-profit', url: 'https://www.internetmatters.org/advice/by-activity/online-gaming-advice-hub/', also: ['safety', 'world'], note: 'UK non-profit advice on ratings, chat, spending and healthy play, with guides by age.' },
+      { name: 'FTC finalizes order requiring Fortnite maker Epic Games to pay $245 million', org: 'U.S. Federal Trade Commission', kind: 'Government', url: 'https://www.ftc.gov/news-events/news/press-releases/2023/03/ftc-finalizes-order-requiring-fortnite-maker-epic-games-pay-245-million-tricking-users-making', also: ['safety'], note: 'Why confusing purchase buttons matter: the FTC\'s case over unwanted in-game charges.' },
+      { name: 'Video gaming may be associated with better cognitive performance in children', org: 'National Institutes of Health', kind: 'Government', url: 'https://nih.gov/news-events/news-releases/video-gaming-may-be-associated-better-cognitive-performance-children', also: ['balance'], note: 'NIH summary of a 2022 JAMA Network Open study of 9–10-year-olds. The finding is a correlation, not proof that games cause better thinking.' },
+      { name: 'A Large-Scale Test of the Goldilocks Hypothesis', org: 'Przybylski & Weinstein, Psychological Science (2017)', kind: 'Education & research', url: 'https://doi.org/10.1177/0956797616678438', also: ['balance'], note: 'A study of about 120,000 English teens linking moderate screen use to slightly better well-being. The effect was small.' },
+      { name: 'Major new study finds little evidence for causal connection between well-being and video game playing', org: 'Oxford Internet Institute (2022)', kind: 'Education & research', url: 'https://www.oii.ox.ac.uk/major-new-study-finds-little-evidence-for-causal-connection-between-well-being-and-video-game-playing/', also: ['balance'], note: 'Play logs from seven publishers linked to well-being surveys: hours played mattered little, while feeling compelled to play went with less enjoyment.' }
     ]},
     { group: '🔧 Parental-control tools', id: 'tools', tab: null, items: [
       { name: 'Apple Family Sharing and Screen Time', org: 'Apple', kind: 'Company tool', url: 'https://www.apple.com/families/', note: 'Built-in controls for content ratings, downloads, purchases and time limits on Apple devices. These are company tools, not research sources.' },

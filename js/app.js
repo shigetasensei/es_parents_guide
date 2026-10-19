@@ -564,8 +564,7 @@ function initHelp() {
         h('p', { class: 'tiny' }, h('strong', {}, 'Links: '), it.links.map((l, k) => [k ? ' · ' : '', h('a', { href: l[1], target: '_blank', rel: 'noopener' }, l[0])])),
         it.jp && it.jp.length ? h('div', { class: 'jp-help' },
           h('h4', {}, '🇯🇵 In Japan 日本の窓口'),
-          h('ul', {}, it.jp.map(id => { const x = D.jpHelp.find(j => j.id === id); return jpLine(x); })),
-          h('p', { class: 'tiny' }, h('a', { href: '#japan' }, 'See all help lines in Japan →'))) : null);
+          h('ul', {}, it.jp.map(id => { const x = D.jpHelp.find(j => j.id === id); return jpLine(x); }))) : null);
       award('help');
     });
     return b;
@@ -640,7 +639,7 @@ function initChallenge() {
   show();
 }
 
-/* ---------- Japan: help line directory ---------- */
+/* ---------- Japan help lines shown inside the Help Finder ---------- */
 function telHref(tel) {
   if (/^[0-9-]+$/.test(tel)) return 'tel:' + tel.replace(/-/g, '');
   if (/^#[0-9]+$/.test(tel)) return 'tel:%23' + tel.slice(1);
@@ -653,20 +652,6 @@ function jpLine(x) {
     th ? h('a', { href: th }, x.tel) : x.tel,
     x.hours && x.hours !== 'Online' ? h('span', { class: 'muted' }, ` · ${x.hours}`) : null);
 }
-function initJapan() {
-  const m = $('#jpHelpMount');
-  D.jpHelp.forEach(x => {
-    const th = telHref(x.tel);
-    m.append(h('article', { class: 'jp-card' },
-      h('h3', {}, x.ja),
-      h('p', { class: 'jp-name' }, x.name),
-      h('p', { class: 'jp-tel' }, th ? h('a', { href: th }, x.tel) : x.tel),
-      h('p', { class: 'jp-hours' }, x.hours),
-      h('p', {}, x.who),
-      x.url ? h('p', { class: 'tiny' }, h('a', { href: x.url, target: '_blank', rel: 'noopener' }, 'Official page →')) : null));
-  });
-}
-
 /* ---------- Sources ---------- */
 function initSources() {
   const m = $('#sourcesMount');
@@ -746,7 +731,7 @@ function boot() {
   initCalm();
   initGame('#gameGoodFit', { ...D.games.goodFit });
   checklist('#eyChecklist', D.eySetup, S.eySetup, n => { if (n >= 5) award('eysetup'); });
-  initStarters(); initPassphrase(); initUsername(); initHelp(); initChallenge(); initJapan(); initSources();
+  initStarters(); initPassphrase(); initUsername(); initHelp(); initChallenge(); initSources();
   renderAge(); updatePassport(); route();
 }
 boot();

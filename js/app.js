@@ -1,4 +1,4 @@
-/* Family Tech Trail — vanilla JS, no dependencies. */
+/* ES Tech Talk@CA — vanilla JS, no dependencies. */
 (() => {
 'use strict';
 
@@ -31,7 +31,7 @@ function rand(n) {
 const AGE_LABEL = { '6-7': 'Ages 6–7', '8-9': 'Ages 8–9', '10-11': 'Ages 10–11' };
 
 /* ---------- state (localStorage with safe fallback) ---------- */
-const KEY = 'familyTechTrail.v1';
+const KEY = 'familyTechTrail.v1'; // key kept so existing visitors keep their saved data
 let S = { age: '8-9', stamps: {}, myths: {}, aiRules: {}, setup: {}, plan: null, day: null, dayEY: null, eySetup: {}, favs: [], checkin: null, priv: {} };
 try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { /* private mode */ }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } };
@@ -58,7 +58,7 @@ function award(id) {
   if (S.stamps[id]) return;
   S.stamps[id] = true; save(); updatePassport();
   const st = D.stamps.find(s => s.id === id);
-  toast(stampCount() === D.stamps.length ? '🎉 All stamps collected — Family Tech Trail champion!' : `${st.icon} New stamp: ${st.label}!`);
+  toast(stampCount() === D.stamps.length ? '🎉 All stamps collected — ES Tech Talk champion!' : `${st.icon} New stamp: ${st.label}!`);
 }
 
 /* ---------- routing ---------- */
@@ -560,7 +560,7 @@ function initHelp() {
 
 /* ---------- Toolkit ---------- */
 function toolkitText() {
-  const L = ['MY FAMILY TOOLKIT — Family Tech Trail', ''];
+  const L = ['MY FAMILY TOOLKIT — ES Tech Talk@CA', ''];
   if (S.plan) {
     const p = S.plan;
     L.push(`${p.name.trim() || 'Our'} FAMILY MEDIA PLAN`, `School days: ${p.weekday}`, `Weekends: ${p.weekend}`, `Screens off before bed: ${p.off} minutes`, `Devices sleep in: ${p.charge}`,
@@ -687,7 +687,7 @@ function initSources() {
     if (!n) list.append(h('p', { class: 'muted' }, 'No matches. Try a different word or filter.'));
   }
   function asText() {
-    return ['FAMILY TECH TRAIL — SOURCES & FURTHER READING', '']
+    return ['ES TECH TALK@CA — SOURCES & FURTHER READING', '']
       .concat(visible.flatMap(v => [v.g.group, ...v.items.flatMap(it => [` - ${it.name} (${it.org})`, `   ${it.url}`]), '']))
       .join('\n');
   }

@@ -1,4 +1,4 @@
-/* Content for Family Tech Trail. Plain data so it is easy to review and edit. */
+/* Content for ES Tech Talk@CA. Plain data so it is easy to review and edit. */
 window.DATA = {
 
   stamps: [

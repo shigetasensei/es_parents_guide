@@ -1,4 +1,4 @@
-# Family Tech Trail
+# ES Tech Talk@CA
 
 An interactive, research-based guide for parents of preschool-to-elementary children (ages 3–11). A dedicated **🌱 Ages 3–5** tab covers preschool and kindergarten; three trails cover ages 6–11:
 

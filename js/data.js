@@ -167,6 +167,11 @@ window.DATA = {
 
   ageTips: {
     ai: {
+      '3-5': [
+        'Talking gadgets, video recommendations and some toys use AI. Say it simply and often: <strong>"It\'s a computer, not a person."</strong>',
+        'Use voice assistants and AI toys <strong>together</strong>, with child settings on. General chatbots and AI companions are not made for preschoolers.',
+        'Play "Is it AI?" at home and on walks, and check surprising answers together.'
+      ],
       '6-7': [
         'Keep it concrete: voice assistants, video recommendations, face unlock. Say, "It is a computer that learns patterns."',
         'Use AI tools <strong>together</strong>, on a shared device, and keep chatbots for grown-up-led exploration only.',
@@ -184,6 +189,11 @@ window.DATA = {
       ]
     },
     balance: {
+      '3-5': [
+        'Aim for <strong>10–13 hours of sleep</strong> (naps included), about 3 hours of movement, and no more than about 1 hour of screens a day (WHO and Canadian early-years guidelines).',
+        'Choose slow, ad-free shows and <strong>watch together</strong>. Turn off background TV and autoplay.',
+        'Use a timer, a warning and a next activity so "all done" is easier. Try not to make a screen the only way to calm down.'
+      ],
       '6-7': [
         'Predictable routines and a <strong>visual timer</strong> make stopping easier than surprise endings.',
         'Keep screens in shared spaces, watch together, and choose calm, high-quality content.',
@@ -201,6 +211,11 @@ window.DATA = {
       ]
     },
     safety: {
+      '3-5': [
+        'Use <strong>kids-only apps or kid profiles</strong>, in a shared room. No open chat and no open video sites.',
+        'Start the idea of private information in simple words, and teach <strong>"My body belongs to me, and I never keep secrets from my grown-ups."</strong>',
+        'Share photos of your child only privately, without school names, uniforms or places.'
+      ],
       '6-7': [
         'Only use devices <strong>in the same room</strong> as a grown-up, with kid-appropriate apps and no open chat.',
         'Teach <strong>Go / Pause / Stop &amp; tell</strong> and "no personal info." Practice saying it out loud.',

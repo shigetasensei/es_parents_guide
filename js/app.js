@@ -32,7 +32,7 @@ const AGE_LABEL = { '3-5': 'Ages 3–5', '6-7': 'Ages 6–7', '8-9': 'Ages 8–9
 
 /* ---------- state (localStorage with safe fallback) ---------- */
 const KEY = 'familyTechTrail.v1'; // key kept so existing visitors keep their saved data
-let S = { age: '8-9', stamps: {}, myths: {}, aiRules: {}, setup: {}, plan: null, day: null, dayEY: null, eySetup: {}, favs: [], checkin: null, priv: {} };
+let S = { age: '8-9', stamps: {}, myths: {}, aiRules: {}, setup: {}, plan: null, day: null, dayEY: null, eySetup: {}, gSetup: {}, favs: [], checkin: null, priv: {} };
 try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { /* private mode */ }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } };
 
@@ -62,7 +62,7 @@ function award(id) {
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'japan', 'toolkit', 'sources'];
+const VIEWS = ['home', 'early', 'ai', 'balance', 'safety', 'gaming', 'japan', 'toolkit', 'sources'];
 let firstRoute = true;
 function route() {
   let id = location.hash.slice(1), target = null;
@@ -624,6 +624,10 @@ function renderToolkit() {
   if (eyDone) m.append(sec('🌱 Ages 3–5 safe-use', h('p', {}, `${eyDone} of ${D.eySetup.length} done.`), bar(eyDone / D.eySetup.length * 100, 'm-balance'),
     eyDone < D.eySetup.length ? h('div', {}, h('h3', {}, 'Still to do'), h('ul', { class: 'tips' }, D.eySetup.filter((_, i) => !S.eySetup[i]).map(t => h('li', {}, t)))) : h('p', {}, '🎉 All done!')));
 
+  const gDone = D.gamingSetup.filter((_, i) => S.gSetup[i]).length;
+  if (gDone) m.append(sec('🎮 Gaming set-up', h('p', {}, `${gDone} of ${D.gamingSetup.length} done.`), bar(gDone / D.gamingSetup.length * 100, 'm-gaming'),
+    gDone < D.gamingSetup.length ? h('div', {}, h('h3', {}, 'Still to do'), h('ul', { class: 'tips' }, D.gamingSetup.filter((_, i) => !S.gSetup[i]).map(t => h('li', { html: t })))) : h('p', {}, '🎉 All done!')));
+
   m.append(sec('💬 Saved conversation starters', S.favs.length
     ? h('ul', { class: 'tips' }, S.favs.map(f => h('li', {}, f.t, ' ', h('button', { class: 'linkbtn no-print', type: 'button', 'aria-label': 'Remove: ' + f.t, onClick: () => { S.favs = S.favs.filter(x => x.t !== f.t); save(); renderToolkit(); initStartersRefresh(); } }, 'remove'))))
     : empty('Tap ☆ Save on any starter to keep it here.', '#home', 'Browse topics →')));
@@ -656,7 +660,7 @@ function jpLine(x) {
 function initSources() {
   const m = $('#sourcesMount');
   const all = D.sources.flatMap(g => g.items.map(it => ({ ...it, group: g, topics: [g.id, ...(it.also || [])] })));
-  const chips = [['all', 'All'], ['early', '🌱 Ages 3–5'], ['ai', '🤖 AI'], ['balance', '⚖️ Balance'], ['safety', '🛡️ Safety'], ['tools', '🔧 Tools'], ['japan', '🇯🇵 Japan'], ['world', '🌍 Outside the U.S.']];
+  const chips = [['all', 'All'], ['early', '🌱 Ages 3–5'], ['ai', '🤖 AI'], ['balance', '⚖️ Balance'], ['safety', '🛡️ Safety'], ['gaming', '🎮 Gaming'], ['tools', '🔧 Tools'], ['japan', '🇯🇵 Japan'], ['world', '🌍 Outside the U.S.']];
   let topic = 'all', q = '', visible = [];
   const count = h('p', { class: 'tiny', 'aria-live': 'polite' });
   const list = h('div');
@@ -726,6 +730,8 @@ function boot() {
   initGame('#gameFact', { ...D.games.fact });
   initGame('#gameTraffic', { ...D.games.traffic });
   initGame('#gameSafety', { ...D.games.safety });
+  initGame('#gameGaming', { ...D.games.gaming });
+  checklist('#gamingChecklist', D.gamingSetup, S.gSetup, n => { if (n >= 5) award('gsetup'); });
   checklist('#aiRules', D.aiRules, S.aiRules);
   checklist('#safetyChecklist', D.safetyChecklist, S.setup, n => { if (n >= 5) award('setup'); });
   initDay('#dayDesigner', DAY_SETS.main); initDay('#dayDesignerEY', DAY_SETS.early);

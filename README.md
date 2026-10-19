@@ -7,6 +7,7 @@ An interactive, research-based guide for parents of preschool-to-elementary chil
 - 🤖 **AI in education & life** – what AI is, fact-checking chatbots, homework "traffic light", family AI rules
 - ⚖️ **Media balance** – day designer, the "5 Cs" quality check, a printable Family Media Plan, "time's up" scripts
 - 🛡️ **Internet safety** – Go / Pause / Stop & tell game, privacy lab, set-up checklist, "what do I do if…?" help finder
+- 🎮 **Gaming** – choosing games (ESRB, CERO, PEGI), chat and strangers, in-game spending and loot boxes, "game over" routines, age tips (with extra focus on ages 8–11), a gaming Go / Pause / Stop & tell game, popular-games and console-controls guides, set-up checklist
 
 Plus a family check-in, myth-or-fact cards, an explorer passport of stamps, a printable Toolkit, and a curated list of sources.
 

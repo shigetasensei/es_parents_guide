@@ -558,13 +558,13 @@ function initHelp() {
     const b = h('button', { class: 'help-btn', type: 'button', 'aria-pressed': 'false' }, h('span', { 'aria-hidden': 'true' }, it.ico), ' ', it.label);
     b.addEventListener('click', () => {
       btns.forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true');
-      clear(detail).append(
+      clear(detail).append(...[
         h('h3', {}, it.label),
         h('ol', {}, it.steps.map(s => h('li', { html: s }))),
-        h('p', { class: 'tiny' }, h('strong', {}, 'Links: '), it.links.map((l, k) => [k ? ' · ' : '', h('a', { href: l[1], target: '_blank', rel: 'noopener' }, l[0])])),
+        it.links && it.links.length ? h('p', { class: 'tiny' }, h('strong', {}, 'Links: '), it.links.map((l, k) => [k ? ' · ' : '', h('a', { href: l[1], target: '_blank', rel: 'noopener' }, l[0])])) : null,
         it.jp && it.jp.length ? h('div', { class: 'jp-help' },
           h('h4', {}, '🇯🇵 In Japan 日本の窓口'),
-          h('ul', {}, it.jp.map(id => { const x = D.jpHelp.find(j => j.id === id); return jpLine(x); }))) : null);
+          h('ul', {}, it.jp.map(id => { const x = D.jpHelp.find(j => j.id === id); return jpLine(x); }))) : null].filter(Boolean));
       award('help');
     });
     return b;

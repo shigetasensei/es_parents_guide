@@ -483,8 +483,7 @@ window.DATA = {
       jp: ['ihaho', 'police9110', 'heart8103'], steps: ['Save evidence (screenshots, links, usernames) without sharing the image further.', 'Report it to the platform and to the school if students are involved.', 'If the image is sexual or exploitative, report it to NCMEC\'s CyberTipline and see the Take It Down site for removal options.', 'Support your child: this is not their fault, and the people who made it are responsible.'],
       links: [['CyberTipline', 'https://report.cybertip.org/'], ['Take It Down', 'https://takeitdown.ncmec.org/']] },
     { id: 'crisis', label: 'My child seems very distressed or may be in danger', ico: '❤️‍🩹',
-      jp: ['sos24', 'childline', 'tell', 'e110'], steps: ['Stay with them and listen without judgment.', 'In the U.S., call or text 988 (Suicide &amp; Crisis Lifeline) or call 911 for emergencies.', 'Contact your pediatrician or school counselor for ongoing support.', 'Outside the U.S., contact your local emergency number or health service.'],
-      links: [['988 Lifeline', 'https://988lifeline.org/']] }
+      jp: ['sos24', 'childline', 'tell', 'e110'], steps: ['Stay with them and listen without judgment.', 'If you think they may be in danger, contact your local emergency number or health service.', 'Contact your pediatrician or school counselor for ongoing support.'] }
   ],
 
   challenges: [
@@ -556,7 +555,6 @@ window.DATA = {
       { name: 'Prevent Cyberbullying', org: 'StopBullying.gov (U.S. HHS)', kind: 'Government', url: 'https://www.stopbullying.gov/cyberbullying/prevention', note: 'Warning signs, family rules and how to respond. The site also explains how to report cyberbullying.' },
       { name: 'Protecting your child\'s privacy online', org: 'U.S. Federal Trade Commission', kind: 'Government', url: 'https://consumer.ftc.gov/articles/protecting-your-childs-privacy-online', also: ['early'], note: 'Plain-language explanation of COPPA and privacy tips.' },
       { name: 'ReportFraud.ftc.gov', org: 'U.S. Federal Trade Commission', kind: 'Government', url: 'https://reportfraud.ftc.gov/', note: 'Report scams, unexpected charges and fraud (U.S.).' },
-      { name: '988 Suicide & Crisis Lifeline', org: '988 Lifeline (U.S.)', kind: 'Government', url: 'https://988lifeline.org/', note: 'Call or text 988 in the U.S. if a child or family member is in crisis. For emergencies, call 911.' },
       { name: 'Parent guides to apps, games and social media', org: 'ConnectSafely', kind: 'Non-profit', url: 'https://connectsafely.org/parentguides/', note: 'Non-profit guides for popular platforms and safety settings.' },
       { name: 'Age ratings and reviews', org: 'Common Sense Media', kind: 'Independent reviewer', url: 'https://www.commonsensemedia.org/', also: ['early'], note: 'Independent reviews of movies, games, apps and more by age.' }
     ]},

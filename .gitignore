@@ -1,0 +1,16 @@
+# dependencies / virtual environments
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# OS / logs / deploy
+.DS_Store
+*.log
+.vercel

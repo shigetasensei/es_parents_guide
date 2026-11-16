@@ -298,7 +298,10 @@ window.DATA = {
       'What do you think happens to the things we type into an AI app?',
       'If AI draws a picture, who is the artist? Is it fair to say we made it?',
       'Have you seen a picture or video that might have been made by a computer? How could we tell?',
-      'What counts as your own work on homework? Where would using AI cross a line?'
+      'What counts as your own work on homework? Where would using AI cross a line?',
+      'What does an AI app need to know about us to work? Is that okay with you?',
+      'Is AI fair to everyone? Who might it get wrong or leave out?',
+      'What would you like AI to help people do? What should it never do?'
     ],
     balance: [
       'What is your favorite thing to do on a screen? What is your favorite thing to do off a screen?',
@@ -511,6 +514,9 @@ window.DATA = {
       { name: 'Statement from the IB about ChatGPT and artificial intelligence in assessment and education', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://ibo.org/news/news-about-the-ib/statement-from-the-ib-about-chatgpt-and-artificial-intelligence-in-assessment-and-education/', note: 'The IB will not ban AI tools. Work produced by AI, even in part, is not the student\'s own, and AI-generated content in assessed work must be credited in the text and in the bibliography. Written mainly for IB assessment.' },
       { name: 'Artificial intelligence (AI) in learning, teaching, and assessment', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://www.ibo.org/programmes/artificial-intelligence-ai-in-learning-teaching-and-assessment/', note: 'The IB\'s main page on AI: its position, the academic integrity policy\'s guidance on AI tools, and resources for schools.' },
       { name: 'Artificial intelligence (AI) tools: questions and concerns', org: 'International Baccalaureate (IB)', kind: 'Education & research', url: 'https://www.ibo.org/globalassets/new-structure/programmes/shared-resources/pdfs/artificial-intelligence-questions-and-concerns-en.pdf', note: 'Questions and answers from the IB about using AI tools in IB programmes.' },
+      { name: 'AI Answers. You Decide. – Teaching Media and Information Literacy in AI-Mediated Information Environments', org: 'UNESCO (Anne Leppäjärvi, 2026)', kind: 'International', url: 'https://unesdoc.unesco.org/ark:/48223/pf0000400013', note: 'Companion guide to UNESCO\'s Media and Information Literacy curriculum, for educators and curriculum developers. Five areas: AI in everyday life, AI and the media, AI and the human mind and knowledge, AI, power and human rights, and AI and the future, with discussion questions and activities.' },
+      { name: 'AI Answers. You Decide: UNESCO launches a new Media and Information Literacy curriculum', org: 'UNESCO', kind: 'International', url: 'https://www.unesco.org/en/articles/ai-answers-you-decide-unesco-launches-new-media-and-information-literacy-curriculum', note: 'UNESCO\'s 10 November 2026 announcement of the guide, with the five areas and why MIL matters in the age of AI.' },
+      { name: 'Media and Information Literate Citizens: Think Critically, Click Wisely!', org: 'UNESCO', kind: 'International', url: 'https://unesdoc.unesco.org/ark:/48223/pf0000377068', note: 'UNESCO\'s flagship Media and Information Literacy curriculum (2021), piloted and adapted in more than 40 countries.' },
       { name: 'AI4K12 — Five Big Ideas in AI', org: 'AAAI & CSTA', kind: 'Education & research', url: 'https://ai4k12.org/', note: 'Widely used framework for what students should understand about AI at each grade band.' },
       { name: 'Guidance for generative AI in education and research (2023)', org: 'UNESCO', kind: 'International', url: 'https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research', note: 'Human-centered approach, data privacy, teacher role, and age-appropriate use.' },
       { name: 'Artificial Intelligence and the Future of Teaching and Learning (2023)', org: 'U.S. Dept. of Education, Office of Educational Technology', kind: 'Government', url: 'https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf', note: 'Emphasizes keeping humans in the loop, equity, and safety.' },
